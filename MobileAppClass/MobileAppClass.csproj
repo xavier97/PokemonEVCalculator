@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -102,9 +101,10 @@
       <DependentUpon>MyViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="PokemonSettingViewController.cs" />
-    <Compile Include="MyViewControllerPokemonSetting.designer.cs">
+    <Compile Include="PokemonSettingViewController.designer.cs">
       <DependentUpon>PokemonSettingViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="HeldItemPickerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MyViewController.xib" />

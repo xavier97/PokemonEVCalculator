@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyViewControllerPokemonSetting">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonSettingViewController">
             <connections>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
                 <outlet property="PokemonNicknameText" destination="128" id="name-outlet-128"/>
@@ -61,7 +61,7 @@
                     </constraints>
                 </pickerView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Held Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2020" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="179" y="150" width="80" height="21"/>
+                    <rect key="frame" x="191" y="150" width="80" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -207,6 +207,9 @@
                         <constraint id="12235" firstItem="8246" firstAttribute="width" constant="70"/>
                         <constraint id="12243" firstItem="8246" firstAttribute="height" constant="70"/>
                     </constraints>
+                    <connections>
+                        <action selector="UIButton8246_TouchUpInside:" destination="-1" id="16300" eventType="touchUpInside"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9893" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="333" y="408" width="70" height="70"/>
@@ -255,6 +258,9 @@
                         <constraint id="13621" firstItem="10873" firstAttribute="width" constant="70"/>
                         <constraint id="13629" firstItem="10873" firstAttribute="height" constant="70"/>
                     </constraints>
+                    <connections>
+                        <action selector="UIButton10873_TouchUpInside:" destination="-1" id="16747" eventType="touchUpInside"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10883" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="410" y="408" width="70" height="70"/>
@@ -300,7 +306,6 @@
                 <constraint id="2881" firstItem="1948" firstAttribute="top" secondItem="2667" secondAttribute="bottom" constant="34"/>
                 <constraint id="2904" firstItem="1948" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" constant="76"/>
                 <constraint id="3105" firstItem="1970" firstAttribute="top" secondItem="2020" secondAttribute="bottom" constant="8"/>
-                <constraint id="3406" firstItem="2" firstAttribute="centerX" secondItem="2020" secondAttribute="centerX" constant="76"/>
                 <constraint id="3430" firstItem="2" firstAttribute="centerX" secondItem="1970" secondAttribute="centerX" constant="75"/>
                 <constraint id="7207" firstItem="3798" firstAttribute="top" secondItem="1970" secondAttribute="bottom" constant="17"/>
                 <constraint id="7215" firstItem="2" firstAttribute="centerX" secondItem="3798" secondAttribute="centerX" constant="75"/>
@@ -338,6 +343,7 @@
                 <constraint id="14266" firstItem="10873" firstAttribute="leading" secondItem="8246" secondAttribute="trailing" constant="7"/>
                 <constraint id="14274" firstItem="10883" firstAttribute="leading" secondItem="9893" secondAttribute="trailing" constant="7"/>
                 <constraint id="14282" firstItem="10893" firstAttribute="leading" secondItem="9901" secondAttribute="trailing" constant="7"/>
+                <constraint id="22921" firstItem="2" firstAttribute="centerX" secondItem="2020" secondAttribute="centerX" constant="69"/>
             </constraints>
         </view>
     </objects>
