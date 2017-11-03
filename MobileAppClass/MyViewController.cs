@@ -16,7 +16,7 @@ namespace MobileAppClass
             // Perform any additional setup after loading the view, typically from a nib.
 
             // Set up nav controller
-            Title = "Pokemon Calculator";
+            Title = "Pokemon List";
             AddNavButton();
 
         }
