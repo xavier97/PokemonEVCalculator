@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{04E1DEB1-EC92-408A-842E-0BA88672A1E1}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/MyViewController.xib">
+    <Files>
+      <File FileName="MobileAppClass/AppDelegate.cs" Line="27" Column="13" />
+      <File FileName="MobileAppClass/MyViewController.cs" Line="23" Column="91" />
+      <File FileName="MobileAppClass/MyViewController.xib" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MobileAppClass PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F3CFE9D1-1D5D-4EEB-BCFB-567234A9A456" />
+</Properties>
