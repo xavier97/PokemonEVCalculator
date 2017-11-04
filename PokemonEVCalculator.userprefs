@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{04E1DEB1-EC92-408A-842E-0BA88672A1E1}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/PokemonSettingViewController.cs">
     <Files>
-      <File FileName="MobileAppClass/AppDelegate.cs" Line="28" Column="60" />
       <File FileName="MobileAppClass/MyViewController.cs" Line="19" Column="34" />
+      <File FileName="MobileAppClass/PokemonSettingViewController.cs" Line="56" Column="13" />
+      <File FileName="MobileAppClass/PokemonDetail.cs" Line="15" Column="34" />
+      <File FileName="MobileAppClass/FileManager.cs" Line="3" Column="22" />
+      <File FileName="MobileAppClass/HeldItemPickerViewModel.cs" Line="14" Column="10" />
       <File FileName="MobileAppClass/MyViewController.xib" />
       <File FileName="MobileAppClass/PokemonSettingViewController.xib" />
-      <File FileName="MobileAppClass/PokemonSettingViewController.cs" Line="20" Column="13" />
-      <File FileName="MobileAppClass/HeldItemPicker.cs" Line="7" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />

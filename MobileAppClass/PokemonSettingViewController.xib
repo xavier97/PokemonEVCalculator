@@ -26,6 +26,7 @@
                 <outlet property="SpAtkEVLabel" destination="6670" id="name-outlet-6670"/>
                 <outlet property="SpDefEVTitleLabel" destination="3822" id="name-outlet-3822"/>
                 <outlet property="SpAtkEVTitleLabel" destination="3814" id="name-outlet-3814"/>
+                <outlet property="saveButton" destination="28601" id="name-outlet-28601"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -34,7 +35,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="128" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Pokemon Nickname" misplaced="YES">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="128" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Pokemon Nickname" misplaced="YES" textAlignment="center">
                     <rect key="frame" x="150" y="91" width="275" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -42,7 +43,7 @@
                         <constraint id="798" firstItem="128" firstAttribute="width" constant="275"/>
                     </constraints>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1512" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Pokemon Breed" misplaced="YES">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1512" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Pokemon Breed" misplaced="YES" textAlignment="center">
                     <rect key="frame" x="150" y="39" width="275" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -50,7 +51,7 @@
                         <constraint id="1775" firstItem="1512" firstAttribute="width" constant="275"/>
                     </constraints>
                 </textField>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="1948" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1948" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                     <rect key="frame" x="352" y="186" width="51" height="31"/>
                 </switch>
                 <pickerView contentMode="scaleToFill" id="1970" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
@@ -79,7 +80,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3692" translatesAutoresizingMaskIntoConstraints="NO" text="Attack EV" misplaced="YES">
-                    <rect key="frame" x="179" y="416" width="92" height="28"/>
+                    <rect key="frame" x="179" y="387" width="92" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -89,7 +90,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Defense EV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3790" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="182" y="454" width="92" height="28"/>
+                    <rect key="frame" x="182" y="417" width="92" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -99,7 +100,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HP EV" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3798" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="179" y="342" width="92" height="28"/>
+                    <rect key="frame" x="179" y="330" width="92" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -109,7 +110,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed EV" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3806" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="146" y="380" width="125" height="28"/>
+                    <rect key="frame" x="146" y="351" width="125" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -119,7 +120,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sp. Attack EV" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3814" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="144" y="528" width="125" height="28"/>
+                    <rect key="frame" x="146" y="495" width="125" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -129,7 +130,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sp. Defense EV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3822" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="152" y="490" width="125" height="28"/>
+                    <rect key="frame" x="155" y="458" width="125" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -139,7 +140,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6495" translatesAutoresizingMaskIntoConstraints="NO" text="0" misplaced="YES">
-                    <rect key="frame" x="275" y="346" width="50" height="21"/>
+                    <rect key="frame" x="275" y="334" width="50" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -148,7 +149,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6638" translatesAutoresizingMaskIntoConstraints="NO" text="0" misplaced="YES">
-                    <rect key="frame" x="275" y="383" width="50" height="21"/>
+                    <rect key="frame" x="275" y="354" width="50" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -157,7 +158,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6646" translatesAutoresizingMaskIntoConstraints="NO" text="0" misplaced="YES">
-                    <rect key="frame" x="275" y="420" width="50" height="21"/>
+                    <rect key="frame" x="275" y="383" width="50" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -166,7 +167,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6654" translatesAutoresizingMaskIntoConstraints="NO" text="0" misplaced="YES">
-                    <rect key="frame" x="275" y="457" width="50" height="21"/>
+                    <rect key="frame" x="275" y="420" width="50" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -175,7 +176,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6662" translatesAutoresizingMaskIntoConstraints="NO" text="0" misplaced="YES">
-                    <rect key="frame" x="275" y="494" width="50" height="21"/>
+                    <rect key="frame" x="275" y="457" width="50" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -184,7 +185,7 @@
                     </constraints>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6670" translatesAutoresizingMaskIntoConstraints="NO" text="0" misplaced="YES">
-                    <rect key="frame" x="275" y="531" width="50" height="21"/>
+                    <rect key="frame" x="275" y="497" width="50" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -192,8 +193,8 @@
                         <constraint id="7836" firstItem="6670" firstAttribute="width" constant="50"/>
                     </constraints>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8246" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="333" y="330" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8246" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="401" y="379" width="70" height="70"/>
                     <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -211,8 +212,8 @@
                         <action selector="UIButton8246_TouchUpInside:" destination="-1" id="16300" eventType="touchUpInside"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9893" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="333" y="408" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9893" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="332" y="379" width="70" height="70"/>
                     <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -227,8 +228,8 @@
                         <constraint id="13158" firstItem="9893" firstAttribute="height" constant="70"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9901" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="333" y="486" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9901" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="332" y="449" width="70" height="70"/>
                     <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -243,8 +244,8 @@
                         <constraint id="13581" firstItem="9901" firstAttribute="height" constant="70"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10873" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="410" y="330" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10873" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="410" y="301" width="70" height="70"/>
                     <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -262,8 +263,8 @@
                         <action selector="UIButton10873_TouchUpInside:" destination="-1" id="16747" eventType="touchUpInside"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10883" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="410" y="408" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10883" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="332" y="301" width="70" height="70"/>
                     <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -278,8 +279,8 @@
                         <constraint id="13645" firstItem="10883" firstAttribute="height" constant="70"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10893" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="410" y="486" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="10893" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="410" y="449" width="70" height="70"/>
                     <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -293,6 +294,26 @@
                         <constraint id="13653" firstItem="10893" firstAttribute="width" constant="70"/>
                         <constraint id="13661" firstItem="10893" firstAttribute="height" constant="70"/>
                     </constraints>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="28601" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                    <rect key="frame" x="248" y="542" width="104" height="30"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <constraints>
+                        <constraint id="29086" firstItem="28601" firstAttribute="width" constant="104"/>
+                        <constraint id="29094" firstItem="28601" firstAttribute="height" constant="30"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="SaveButton_TouchUpInside:" destination="-1" id="31568" eventType="touchUpInside"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -344,6 +365,8 @@
                 <constraint id="14274" firstItem="10883" firstAttribute="leading" secondItem="9893" secondAttribute="trailing" constant="7"/>
                 <constraint id="14282" firstItem="10893" firstAttribute="leading" secondItem="9901" secondAttribute="trailing" constant="7"/>
                 <constraint id="22921" firstItem="2" firstAttribute="centerX" secondItem="2020" secondAttribute="centerX" constant="69"/>
+                <constraint id="29022" firstItem="28601" firstAttribute="centerX" secondItem="2" secondAttribute="centerX"/>
+                <constraint id="30128" firstItem="28601" firstAttribute="top" secondItem="6670" secondAttribute="bottom" constant="24"/>
             </constraints>
         </view>
     </objects>

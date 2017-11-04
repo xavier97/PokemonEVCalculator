@@ -64,6 +64,10 @@ namespace MobileAppClass
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton saveButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel SpAtkEVLabel { get; set; }
 
         [Outlet]
@@ -85,6 +89,10 @@ namespace MobileAppClass
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel SpeedEVTitleLabel { get; set; }
+
+        [Action ("SaveButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SaveButton_TouchUpInside (UIKit.UIButton sender);
 
         [Action ("UIButton10873_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -154,6 +162,11 @@ namespace MobileAppClass
             if (PokerusTitleLabel != null) {
                 PokerusTitleLabel.Dispose ();
                 PokerusTitleLabel = null;
+            }
+
+            if (saveButton != null) {
+                saveButton.Dispose ();
+                saveButton = null;
             }
 
             if (SpAtkEVLabel != null) {

@@ -105,6 +105,8 @@
       <DependentUpon>PokemonSettingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="HeldItemPickerViewModel.cs" />
+    <Compile Include="FileManager.cs" />
+    <Compile Include="PokemonDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MyViewController.xib" />
