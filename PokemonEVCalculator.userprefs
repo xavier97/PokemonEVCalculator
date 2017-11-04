@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/PokemonSettingViewController.cs">
     <Files>
       <File FileName="MobileAppClass/MyViewController.cs" Line="19" Column="34" />
-      <File FileName="MobileAppClass/PokemonSettingViewController.cs" Line="56" Column="13" />
-      <File FileName="MobileAppClass/PokemonDetail.cs" Line="15" Column="34" />
-      <File FileName="MobileAppClass/FileManager.cs" Line="3" Column="22" />
-      <File FileName="MobileAppClass/HeldItemPickerViewModel.cs" Line="14" Column="10" />
+      <File FileName="MobileAppClass/PokemonSettingViewController.cs" Line="38" Column="49" />
+      <File FileName="MobileAppClass/PokemonDetail.cs" Line="16" Column="42" />
+      <File FileName="MobileAppClass/FileManager.cs" Line="2" Column="34" />
+      <File FileName="MobileAppClass/HeldItemPickerViewModel.cs" Line="12" Column="41" />
       <File FileName="MobileAppClass/MyViewController.xib" />
       <File FileName="MobileAppClass/PokemonSettingViewController.xib" />
     </Files>
