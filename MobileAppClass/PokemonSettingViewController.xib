@@ -26,7 +26,6 @@
                 <outlet property="SpAtkEVLabel" destination="6670" id="name-outlet-6670"/>
                 <outlet property="SpDefEVTitleLabel" destination="3822" id="name-outlet-3822"/>
                 <outlet property="SpAtkEVTitleLabel" destination="3814" id="name-outlet-3814"/>
-                <outlet property="saveButton" destination="28601" id="name-outlet-28601"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -295,26 +294,6 @@
                         <constraint id="13661" firstItem="10893" firstAttribute="height" constant="70"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="28601" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                    <rect key="frame" x="248" y="542" width="104" height="30"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                    <constraints>
-                        <constraint id="29086" firstItem="28601" firstAttribute="width" constant="104"/>
-                        <constraint id="29094" firstItem="28601" firstAttribute="height" constant="30"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                    <state key="normal" title="Save">
-                        <color key="titleColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                            <real key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="SaveButton_TouchUpInside:" destination="-1" id="31568" eventType="touchUpInside"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
                 <constraint id="790" firstItem="128" firstAttribute="centerX" secondItem="2" secondAttribute="centerX"/>
@@ -365,8 +344,6 @@
                 <constraint id="14274" firstItem="10883" firstAttribute="leading" secondItem="9893" secondAttribute="trailing" constant="7"/>
                 <constraint id="14282" firstItem="10893" firstAttribute="leading" secondItem="9901" secondAttribute="trailing" constant="7"/>
                 <constraint id="22921" firstItem="2" firstAttribute="centerX" secondItem="2020" secondAttribute="centerX" constant="69"/>
-                <constraint id="29022" firstItem="28601" firstAttribute="centerX" secondItem="2" secondAttribute="centerX"/>
-                <constraint id="30128" firstItem="28601" firstAttribute="top" secondItem="6670" secondAttribute="bottom" constant="24"/>
             </constraints>
         </view>
     </objects>

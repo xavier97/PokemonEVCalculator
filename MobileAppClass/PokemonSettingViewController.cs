@@ -9,7 +9,7 @@ namespace MobileAppClass
 {
     public partial class PokemonSettingViewController : UIViewController
     {
-        string pathFile;           // The location of the Pokemon's details
+        FileManager storageDetail;
         List<string> heldItems;    // A list of selectable training items
 
         public PokemonSettingViewController() : base("PokemonSettingViewController", null)
@@ -39,6 +39,8 @@ namespace MobileAppClass
             HeldItemPicker.Model = heldItemPVM;
             #endregion
 
+            SaveNavButton(); // Adds save button to nav bar
+
         }
 
         public override void ViewDidAppear(bool animated)
@@ -62,17 +64,23 @@ namespace MobileAppClass
             Console.WriteLine("other button touched");
         }
 
-        // File Saving
-        partial void SaveButton_TouchUpInside(UIButton sender)
+        // Creates save button in nav bar
+        private void SaveNavButton()
         {
-            Console.WriteLine("saved");
-            PerformSave();
+            UIBarButtonItem saveBtn = new UIBarButtonItem(UIBarButtonSystemItem.Save, SaveButton_TouchUpInside);
+            UIBarButtonItem[] buttonArray = { saveBtn }; // An array of Navigation Buttons
+            NavigationItem.RightBarButtonItems = buttonArray;
+        }
 
-            /*#region file management
-            // Start saving data in the file
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            pathFile = Path.Combine(path, "myPokemon.json");
-            #endregion*/
+        /// <summary>
+        /// File saving button calls
+        /// </summary>
+        void SaveButton_TouchUpInside(object sender, EventArgs e)
+        {
+            // Save details to JSON
+            // Pop back to main screen
+            PerformSave();
+            Console.WriteLine("Saved");
         }
 
         private void PerformSave()
@@ -87,6 +95,10 @@ namespace MobileAppClass
 
             // TODO: Test if the data is being read from UI
             Console.WriteLine( pkmnDetail.ToString() );
+
+            // Add a new Pokemon
+            storageDetail = FileManager.getInstance;
+            storageDetail.SavePokemon(pkmnDetail);
         }
     }
 }

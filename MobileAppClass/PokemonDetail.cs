@@ -15,7 +15,8 @@ namespace MobileAppClass
         // Testing
         public override string ToString()
         {
-            return string.Format("[PokemonDetail: breed={0}, nickname={1}, heldItem={2}, pokerus={3}]", breed, nickname, heldItem, pokerus);
+            return string.Format("[PokemonDetail: breed={0}, nickname={1}, heldItem={2}, pokerus={3}]",
+                                 breed, nickname, heldItem, pokerus);
         }
 
     }
