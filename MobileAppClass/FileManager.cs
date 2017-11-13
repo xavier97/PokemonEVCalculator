@@ -8,13 +8,13 @@ namespace MobileAppClass
     public class FileManager
     {
         private static FileManager _instance = null; // An instance of the FileManager class
-        List<PokemonDetail> pkmnDetails;
+        private List<PokemonDetail> pkmnList;
         private readonly string FILENAME = "myPokemon.txt";
 
         // singleton
         private FileManager()
         {
-            pkmnDetails = null;
+            pkmnList = null;
         }
 
         public static FileManager getInstance
@@ -30,18 +30,18 @@ namespace MobileAppClass
             }
         }
 
-        // When pkmnDetails (list) is null, read from file and populate memory with list
-        // Handles first time call when _gameDetails is null
+        // When pkmnList (list) is null, read from json file and populate memory with list
+        // Handles first time call when pkmnList is null
         // Handles if file does not exist: returns empty list in that case
         // We always read from memory instead of file when possible. We assume the "save" action updates list in memory and disk
-        public List<PokemonDetail> pokemonDetails
+        // This is how we'll populate the table from storage
+        public List<PokemonDetail> pokemonDetailsStorage
         {
             get
             {
-                if (pkmnDetails == null)
+                // Handle first time case
+                if (pkmnList == null)
                 {
-                    // Handle first time case
-
                     // Read from file 
                     var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                     Console.WriteLine(path); // TODO: Test
@@ -49,21 +49,21 @@ namespace MobileAppClass
 
                     if (File.Exists(pathFile) == false)
                     {
-                        // no file exists, make an empty list
-                        pkmnDetails = new List<PokemonDetail>();
+                        // No file exists, make an empty list
+                        pkmnList = new List<PokemonDetail>();
                     }
-
                     else
                     {
-                        // we have a file, read it
+                        // We have a file, read it
                         using (var streamReader = new StreamReader(pathFile))
                         {
                             var myJsonFromFile = streamReader.ReadToEnd();
-                            pkmnDetails = JsonConvert.DeserializeObject<List<PokemonDetail>>(myJsonFromFile).OrderByDescending(x => x.nickname).ToList();
+                            Console.WriteLine(myJsonFromFile);
+                            pkmnList = JsonConvert.DeserializeObject<List<PokemonDetail>>(myJsonFromFile).OrderByDescending(x => x.nickname).ToList();
                         }
                     }
                 }
-                return pkmnDetails.OrderByDescending(x => x.nickname).ToList();
+                return pkmnList.OrderByDescending(x => x.nickname).ToList();
 
             }
         }
@@ -71,48 +71,24 @@ namespace MobileAppClass
         // (1) Appends new Pokemon to memory, and (2) Saves entire list to to JSON file
         public void SavePokemon(PokemonDetail pokemon)
         {
-            // Appends to list in memory
             if (pokemon != null)
             {
-                // add mode
-                pkmnDetails.Add(pokemon); // Add directly to the list
-            }
+                // append to list in memory and write entire list to file
 
-            // Setting to always include the .Net type name when serializing
-            var mySettings = new JsonSerializerSettings();
-            mySettings.TypeNameHandling = TypeNameHandling.All;
-            var mySerializer = JsonSerializer.Create(mySettings);
-
-            // Convert object to Json
-            string jsonData = JsonConvert.SerializeObject(pokemon);
-
-            // Get file path where saving Pokemon
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            Console.WriteLine(path); // TODO : Test
-            var pathFile = Path.Combine(path, FILENAME);
-
-            // Write json object to Pokemon storage file
-            using (var streamwriter = new StreamWriter(pathFile, false))
-            {
-                streamwriter.Write(jsonData);
+                if (pokemon != null)
+                {
+                    // add mode
+                    pkmnList.Add(pokemon); // add directly to the list.  Dont use the getter because it returns a copy sorted.
+                }
+                String jsonData = JsonConvert.SerializeObject(pokemonDetailsStorage);
+                var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                Console.WriteLine(path);
+                var pathFile = Path.Combine(path, FILENAME);
+                using (var streamwriter = new StreamWriter(pathFile, false))
+                {
+                    streamwriter.Write(jsonData);
+                }
             }
         }
-
-
-        /*void GenerateSimulatedDataFile()
-        {
-            myPeeps = new List<Person>();
-            myPeeps.Add(new Person("aa", "AA", "34"));
-            myPeeps.Add(new Person("bb", "BB", "456456"));
-            myPeeps.Add(new Person("cc", "CC", "3t5g5g"));
-            myPeeps.Add(new Person("dd", "DD", "4545"));
-            myPeeps.Add(new Person("ee", "EE", "45455"));
-
-            var mySettings = new JsonSerializerSettings();
-            mySettings.TypeNameHandling = TypeNameHandling.All;
-
-            var mySerializer = JsonSerializer.Create(mySettings);
-        }*/
-
     }
 }

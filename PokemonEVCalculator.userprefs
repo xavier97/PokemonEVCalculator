@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{04E1DEB1-EC92-408A-842E-0BA88672A1E1}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/PokemonSettingViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/HeldItemPickerViewModel.cs">
     <Files>
-      <File FileName="MobileAppClass/MyViewController.cs" Line="19" Column="34" />
-      <File FileName="MobileAppClass/PokemonSettingViewController.cs" Line="38" Column="49" />
-      <File FileName="MobileAppClass/PokemonDetail.cs" Line="16" Column="42" />
-      <File FileName="MobileAppClass/FileManager.cs" Line="2" Column="34" />
-      <File FileName="MobileAppClass/HeldItemPickerViewModel.cs" Line="12" Column="41" />
+      <File FileName="MobileAppClass/FileManager.cs" Line="8" Column="18" />
+      <File FileName="MobileAppClass/MyViewController.cs" Line="111" Column="104" />
+      <File FileName="MobileAppClass/PokemonSettingViewController.cs" Line="63" Column="11" />
+      <File FileName="MobileAppClass/PokemonDetail.cs" Line="19" Column="70" />
       <File FileName="MobileAppClass/MyViewController.xib" />
       <File FileName="MobileAppClass/PokemonSettingViewController.xib" />
+      <File FileName="MobileAppClass/HeldItemPickerViewModel.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
@@ -16,5 +16,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.MobileAppClass PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F3CFE9D1-1D5D-4EEB-BCFB-567234A9A456" />
+  <MonoDevelop.Ide.ItemProperties.MobileAppClass PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.4F158C60-D503-4722-B8AA-C4FD05F17726" />
 </Properties>

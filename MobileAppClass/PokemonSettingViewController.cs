@@ -9,23 +9,12 @@ namespace MobileAppClass
 {
     public partial class PokemonSettingViewController : UIViewController
     {
-        FileManager storageDetail;
+        int? rowToEdit;
         List<string> heldItems;    // A list of selectable training items
 
-        public PokemonSettingViewController() : base("PokemonSettingViewController", null)
+        public PokemonSettingViewController(int? rowToEditIn) : base("PokemonSettingViewController", null)
         {
-            // Instatiate list used for picker
-            heldItems = new List<string>();
-
-            // Populate list
-            heldItems.Add("-- None --");
-            heldItems.Add("Macho Brace");
-            heldItems.Add("Power Weight");
-            heldItems.Add("Power Bracer");
-            heldItems.Add("Power Belt");
-            heldItems.Add("Power Lens");
-            heldItems.Add("Power Band");
-            heldItems.Add("Power Anklet");
+            rowToEdit = rowToEditIn;
         }
 
         public override void ViewDidLoad()
@@ -34,12 +23,40 @@ namespace MobileAppClass
             // Perform any additional setup after loading the view, typically from a nib.
 
             #region set up picker wheel
+            heldItems = new List<string>();
+            heldItems.Add("-- None --");
+            heldItems.Add("Macho Brace");
+            heldItems.Add("Power Weight");
+            heldItems.Add("Power Bracer");
+            heldItems.Add("Power Belt");
+            heldItems.Add("Power Lens");
+            heldItems.Add("Power Band");
+            heldItems.Add("Power Anklet");
+
             var heldItemPVM = new HeldItemPicker(heldItems);
+
             // Set PickerViewModel to PickerView
             HeldItemPicker.Model = heldItemPVM;
             #endregion
 
-            SaveNavButton(); // Adds save button to nav bar
+            // Adds save button to nav bar
+            SaveNavButton();
+
+            // Edit mode - pre-fill data
+            if (rowToEdit != null)
+            {
+                var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
+
+                PokemonBreedText.Text = pkmnToEdit.breed;
+                PokemonNicknameText.Text = pkmnToEdit.nickname;
+                if (pkmnToEdit.pokerus == true)
+                {
+                    PokerusSwitch.SetState(true, true);
+                }
+                // TODO : Pre-fill the held item picker 
+                //HeldItemPicker myHeldItem = new HeldItemPicker(heldItems);
+                //myHeldItem.Selected(HeldItemPicker, heldItems.IndexOf(pkmnToEdit.heldItem), 1);
+            }
 
         }
 
@@ -72,9 +89,7 @@ namespace MobileAppClass
             NavigationItem.RightBarButtonItems = buttonArray;
         }
 
-        /// <summary>
-        /// File saving button calls
-        /// </summary>
+        // File saving button calls
         void SaveButton_TouchUpInside(object sender, EventArgs e)
         {
             // Save details to JSON
@@ -83,22 +98,39 @@ namespace MobileAppClass
             Console.WriteLine("Saved");
         }
 
+        // Saves both edited and new Pokemon
         private void PerformSave()
         {
+            PokemonDetail pokemonToAddOrEdit;
             HeldItemPicker myHeldItem = new HeldItemPicker(heldItems);
             PokemonDetail pkmnDetail = new PokemonDetail();
 
-            pkmnDetail.breed = PokemonBreedText.Text.Trim();
-            pkmnDetail.nickname = PokemonNicknameText.Text.Trim();
-            pkmnDetail.heldItem = myHeldItem.SelectedItem;
-            pkmnDetail.pokerus = PokerusSwitch.On;
+            if (rowToEdit == null) // Adding new record
+            {
+                pokemonToAddOrEdit = new PokemonDetail();
+            }
+            else // Editing
+            {
+                // Manipulate the existng Pokemon in list
+                pokemonToAddOrEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
+            }
 
-            // TODO: Test if the data is being read from UI
-            Console.WriteLine( pkmnDetail.ToString() );
+            // Get data from fields
+            pokemonToAddOrEdit.breed = PokemonBreedText.Text.Trim();
+            pokemonToAddOrEdit.nickname = PokemonNicknameText.Text.Trim();
+            pokemonToAddOrEdit.heldItem = myHeldItem.SelectedItem;
+            pokemonToAddOrEdit.pokerus = PokerusSwitch.On;
 
-            // Add a new Pokemon
-            storageDetail = FileManager.getInstance;
-            storageDetail.SavePokemon(pkmnDetail);
+            if (rowToEdit == null)
+            {
+                // adding
+                FileManager.getInstance.SavePokemon(pokemonToAddOrEdit);
+            }
+            else
+            {
+                // editing
+                FileManager.getInstance.SavePokemon(null);
+            }
         }
     }
 }
