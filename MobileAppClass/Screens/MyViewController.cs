@@ -29,7 +29,22 @@ namespace PKMNEVCalc
             base.ViewWillAppear(animated);
 
             // TODO Add hiding and viewing main screen depending on if MyPartyPokemonTable is full or empty
-            EmptyListLabel.Hidden = true;
+            var fm = FileManager.getInstance;
+            if (fm.pokemonDetailsStorage.Count == 0)
+            {
+                EmptyListLabel.Hidden = false;
+                MyPartyPokemonTable.Hidden = true;
+            }
+            else
+            {
+                EmptyListLabel.Hidden = true;
+                MyPartyPokemonTable.Hidden = false;
+            }
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
 
             MyPartyPokemonTable.ReloadData();
         }
@@ -134,10 +149,11 @@ namespace PKMNEVCalc
             {
                 case UITableViewCellEditingStyle.Delete:
 
-                    // TODO: delete the Chuck from the JSON storage
-
                     // remove the item from the underlying data source
                     FileManager.getInstance.pokemonDetailsStorage.RemoveAt(indexPath.Row);
+
+                    // delete the data from JSON
+                    FileManager.getInstance.DeletePokemon(indexPath.Row);
 
                     // delete the row from the table
                     tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);

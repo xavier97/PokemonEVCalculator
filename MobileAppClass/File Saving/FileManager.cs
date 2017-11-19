@@ -73,21 +73,32 @@ namespace PKMNEVCalc
         {
             if (pokemon != null)
             {
-                // append to list in memory and write entire list to file
+                // add mode
+                pkmnList.Add(pokemon); // add directly to the list.  Dont use the getter because it returns a COPY sorted.
+            }
+            String jsonData = JsonConvert.SerializeObject(pokemonDetailsStorage);
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            Console.WriteLine(path);
+            var pathFile = Path.Combine(path, FILENAME);
+            using (var streamwriter = new StreamWriter(pathFile, false))
+            {
+                streamwriter.Write(jsonData);
+            }
+        }
 
-                if (pokemon != null)
-                {
-                    // add mode
-                    pkmnList.Add(pokemon); // add directly to the list.  Dont use the getter because it returns a copy sorted.
-                }
-                String jsonData = JsonConvert.SerializeObject(pokemonDetailsStorage);
-                var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                Console.WriteLine(path);
-                var pathFile = Path.Combine(path, FILENAME);
-                using (var streamwriter = new StreamWriter(pathFile, false))
-                {
-                    streamwriter.Write(jsonData);
-                }
+        public void DeletePokemon(int pkmnToDelete)
+        {
+            // Remove from memory
+            pkmnList.RemoveAt(pkmnToDelete);
+
+            // Write updated list without pkmnToDelete
+            String jsonData = JsonConvert.SerializeObject(pokemonDetailsStorage);
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            Console.WriteLine(path);
+            var pathFile = Path.Combine(path, FILENAME);
+            using (var streamwriter = new StreamWriter(pathFile, false))
+            {
+                streamwriter.Write(jsonData);
             }
         }
     }
