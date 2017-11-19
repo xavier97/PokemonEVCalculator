@@ -1,6 +1,11 @@
 ﻿<Properties StartupConfiguration="{04E1DEB1-EC92-408A-842E-0BA88672A1E1}|Default">
   <MonoDevelop.Ide.ItemProperties.PokemonEVCalculator PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.4F158C60-D503-4722-B8AA-C4FD05F17726" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/Screens/MyViewController.xib">
+    <Files>
+      <File FileName="MobileAppClass/Screens/MyViewController.cs" Line="48" Column="13" />
+      <File FileName="MobileAppClass/Screens/MyViewController.xib" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
