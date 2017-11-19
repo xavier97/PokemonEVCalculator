@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace MobileAppClass
+namespace PKMNEVCalc
 {
     public class Application
     {
