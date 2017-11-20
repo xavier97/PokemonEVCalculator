@@ -52,6 +52,18 @@ namespace PKMNEVCalc
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton pokemonButton1 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton pokemonButton2 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton pokemonButton3 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField PokemonNicknameText { get; set; }
 
         [Outlet]
@@ -85,14 +97,6 @@ namespace PKMNEVCalc
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel SpeedEVTitleLabel { get; set; }
-
-        [Action ("UIButton10873_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void UIButton10873_TouchUpInside (UIKit.UIButton sender);
-
-        [Action ("UIButton8246_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void UIButton8246_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -139,6 +143,21 @@ namespace PKMNEVCalc
             if (PokemonBreedText != null) {
                 PokemonBreedText.Dispose ();
                 PokemonBreedText = null;
+            }
+
+            if (pokemonButton1 != null) {
+                pokemonButton1.Dispose ();
+                pokemonButton1 = null;
+            }
+
+            if (pokemonButton2 != null) {
+                pokemonButton2.Dispose ();
+                pokemonButton2 = null;
+            }
+
+            if (pokemonButton3 != null) {
+                pokemonButton3.Dispose ();
+                pokemonButton3 = null;
             }
 
             if (PokemonNicknameText != null) {

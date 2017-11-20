@@ -22,11 +22,19 @@ namespace PKMNEVCalc
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
 
+            // Adds save button to nav bar
+            SaveNavButton();
+
+            #region Add long press button gestures
+            pokemonButton1.UserInteractionEnabled = true;
+            UILongPressGestureRecognizer longp = new UILongPressGestureRecognizer(LongPress);
+            pokemonButton1.AddGestureRecognizer(longp);
+            #endregion
+
             #region set up picker view
             // create our simple picker model
             var pickerDataModel = new PickerDataModel();
             pickerDataModel.Items.Add("-- None --");
-            pickerDataModel.Items.Add("Macho Brace");
             pickerDataModel.Items.Add("Power Weight");
             pickerDataModel.Items.Add("Power Bracer");
             pickerDataModel.Items.Add("Power Belt");
@@ -43,9 +51,6 @@ namespace PKMNEVCalc
             };
             #endregion
 
-            // Adds save button to nav bar
-            SaveNavButton();
-
             // Edit mode - pre-fill data
             if (rowToEdit != null)
             {
@@ -61,7 +66,32 @@ namespace PKMNEVCalc
                 // Pre-fill the held item picker
                 HeldItemPicker.Select(pickerDataModel.Items.IndexOf(pkmnToEdit.heldItem), 0, true);
             }
+        }
 
+        /// <summary>
+        /// Allows the option to (1) KO the Pokemon (if pokemonToBattle is not null) or 
+        /// (2) select a new Pokemon to battle against
+        /// </summary>
+        private void LongPress()
+        {
+            Console.WriteLine("Long press");
+            var option = UIAlertController.Create(null, "Switch up on your opponent.", UIAlertControllerStyle.ActionSheet);
+            option.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
+            option.AddAction(UIAlertAction.Create("New Opponent", UIAlertActionStyle.Default, null));
+            option.AddAction(UIAlertAction.Create("Delete Opponent", UIAlertActionStyle.Default, null));
+            PresentViewController(option, animated: true, completionHandler: null);
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            Title = PokemonNicknameText.Text;
+
+            // wire up title to nickname
+            PokemonNicknameText.AllEditingEvents += (sender, e) => {
+                Title = PokemonNicknameText.Text;
+            };
         }
 
         public override void ViewDidAppear(bool animated)
@@ -73,16 +103,6 @@ namespace PKMNEVCalc
         {
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
-        }
-
-        partial void UIButton8246_TouchUpInside(UIButton sender)
-        {
-            Console.WriteLine("button touched");
-        }
-
-        partial void UIButton10873_TouchUpInside(UIButton sender)
-        {
-            Console.WriteLine("other button touched");
         }
 
         // Creates save button in nav bar

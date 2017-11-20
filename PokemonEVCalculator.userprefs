@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{04E1DEB1-EC92-408A-842E-0BA88672A1E1}|Default">
   <MonoDevelop.Ide.ItemProperties.PokemonEVCalculator PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.4F158C60-D503-4722-B8AA-C4FD05F17726" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/Screens/MyViewController.xib">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileAppClass/Screens/PokemonSettingViewController.cs">
     <Files>
-      <File FileName="MobileAppClass/Screens/MyViewController.cs" Line="48" Column="13" />
+      <File FileName="MobileAppClass/Screens/PokemonSettingViewController.cs" Line="78" Column="85" />
+      <File FileName="MobileAppClass/Screens/PokemonSettingViewController.xib" />
       <File FileName="MobileAppClass/Screens/MyViewController.xib" />
+      <File FileName="MobileAppClass/Models/PokemonBattled.cs" Line="11" Column="41" />
+      <File FileName="MobileAppClass/Models/PokemonDetail.cs" Line="15" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />

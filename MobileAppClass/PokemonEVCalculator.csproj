@@ -120,6 +120,7 @@
       <DependentUpon>EVItemPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\PokemonDetail.cs" />
+    <Compile Include="Models\PokemonBattled.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\PokemonSettingViewController.xib" />
