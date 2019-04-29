@@ -1,6 +1,9 @@
 ﻿using System;
 namespace MobileAppClass
 {
+    /// <summary>
+    /// Records the EV yields of a Pokemon that was battled against
+    /// </summary>
     public class PokemonBattled
     {
         public int attackEV { get; set; }

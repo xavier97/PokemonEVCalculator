@@ -1,7 +1,3 @@
-/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone10.4-11.1/ibtool/_BundleResourceWithLogicalName.items
-/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone10.4-11.1/actool/_PartialAppManifest.items
-/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone10.4-11.1/actool/_BundleResourceWithLogicalName.items
-/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone10.4-11.1/optimized/
 /Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/PokemonEVCalculator.csproj.CoreCompileInputs.cache
 /Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/bin/iPhoneSimulator/Debug/MobileAppClass.exe
 /Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/bin/iPhoneSimulator/Debug/MobileAppClass.pdb
@@ -9,3 +5,11 @@
 /Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/bin/iPhoneSimulator/Debug/Newtonsoft.Json.xml
 /Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/MobileAppClass.exe
 /Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/MobileAppClass.pdb
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone11.8-12.2/ibtool/_BundleResourceWithLogicalName.items
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone11.8-12.2/actool/_PartialAppManifest.items
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone11.8-12.2/actool/_BundleResourceWithLogicalName.items
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone11.8-12.2/coremlc/_PartialAppManifest.items
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone11.8-12.2/coremlc/_BundleResourceWithLogicalName.items
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/device-builds/iphone11.8-12.2/optimized/
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/PokemonEVCalculator.csprojAssemblyReference.cache
+/Users/Xavier/Documents/GitHub/PokemonEVCalculator/MobileAppClass/obj/iPhoneSimulator/Debug/PokemonEVCalculator.csproj.CopyComplete

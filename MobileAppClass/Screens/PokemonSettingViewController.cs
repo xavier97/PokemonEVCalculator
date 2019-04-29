@@ -80,6 +80,8 @@ namespace PKMNEVCalc
             option.AddAction(UIAlertAction.Create("New Opponent", UIAlertActionStyle.Default, null));
             option.AddAction(UIAlertAction.Create("Delete Opponent", UIAlertActionStyle.Default, null));
             PresentViewController(option, animated: true, completionHandler: null);
+
+
         }
 
         public override void ViewWillAppear(bool animated)
