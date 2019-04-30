@@ -34,7 +34,7 @@ namespace PKMNEVCalc
         // Handles first time call when pkmnList is null
         // Handles if file does not exist: returns empty list in that case
         // We always read from memory instead of file when possible. We assume the "save" action updates list in memory and disk
-        // This is how we'll populate the table from storage
+        // This is how I'll populate the table from storage
         public List<PokemonDetail> pokemonDetailsStorage
         {
             get

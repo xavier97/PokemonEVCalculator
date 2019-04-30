@@ -65,6 +65,7 @@ namespace PKMNEVCalc
 
                 // Pre-fill the held item picker
                 HeldItemPicker.Select(pickerDataModel.Items.IndexOf(pkmnToEdit.heldItem), 0, true);
+                heldItem = pkmnToEdit.heldItem;
             }
         }
 
@@ -145,6 +146,7 @@ namespace PKMNEVCalc
             pokemonToAddOrEdit.nickname = PokemonNicknameText.Text.Trim();
             pokemonToAddOrEdit.pokerus = PokerusSwitch.On;
             pokemonToAddOrEdit.heldItem = heldItem;
+            Console.WriteLine(heldItem);
 
             if (rowToEdit == null)
             {
