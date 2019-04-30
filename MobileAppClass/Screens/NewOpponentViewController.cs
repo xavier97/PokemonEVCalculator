@@ -1,15 +1,16 @@
 ﻿using System;
-using System.IO;
 using Foundation;
 using UIKit;
 using System.Xml.Linq;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 
-namespace PKMNEVCalc
+namespace MobileAppClass.Screens
 {
-    public partial class MyViewController : UIViewController
+    public partial class NewOpponentViewController : UIViewController
     {
-
-        public MyViewController() : base("MyViewController", null)
+        public NewOpponentViewController() : base("NewOpponentViewController", null)
         {
         }
 
@@ -18,61 +19,24 @@ namespace PKMNEVCalc
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
 
-            // Set up nav controller
-            Title = "Pokemon List";
-            AddNavButton();
-
-            MyPartyPokemonTable.Source = new TableViewSource(this);
+            // Set up Nav Controller
+            Title = "Foe";
 
             var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var library = Path.Combine(documents, "..", "Library");
-            var filename = Path.Combine(library, "AllPokemon.xml");
+            var fileName = Path.Combine(library, "AllPokemon.xml");
 
-            new XDocument(
-                new XElement("Pokemon",
-                new XElement("Wishiwashi", 
-                    new XElement("attackEV", "0"),
-                    new XElement("defenseEV", "0"),
-                    new XElement("spAttackEV", "0"),
-                    new XElement("spDefenseEV", "0"),
-                    new XElement("hpEV", "1"),
-                    new XElement("speedEV", "0")),
-                new XElement("Crabrawler",
-                    new XElement("attackEV", "1"),
-                    new XElement("defenseEV", "0"),
-                    new XElement("spAttackEV", "0"),
-                    new XElement("spDefenseEV", "0"),
-                    new XElement("hpEV", "0"),
-                    new XElement("speedEV", "0"))
-                )
-            )
-            .Save(filename);
-            Console.WriteLine(filename);
+            XDocument xDoc = XDocument.Load(fileName);
+            Console.WriteLine(xDoc);
 
-        }
+            XElement pokemon = XElement.Load(fileName);
 
-        public override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
-            
-            var fm = FileManager.getInstance;
-            if (fm.pokemonDetailsStorage.Count == 0)
-            {
-                EmptyListLabel.Hidden = false;
-                MyPartyPokemonTable.Hidden = true;
-            }
-            else
-            {
-                EmptyListLabel.Hidden = true;
-                MyPartyPokemonTable.Hidden = false;
-            }
-        }
+            var queryAll = from mon in pokemon.Descendants("Pokemon")
+                           select (string)mon;
+                           
+            Console.WriteLine(queryAll);
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-
-            MyPartyPokemonTable.ReloadData();
+            //MyFoePokemonTable.Source = new TableViewSource(this);
         }
 
         public override void DidReceiveMemoryWarning()
@@ -80,32 +44,15 @@ namespace PKMNEVCalc
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
         }
-
-        #region UIHandlers
-        void AddButton_TouchUpInside(object sender, EventArgs e)
-        {
-            PokemonSettingViewController vc = new PokemonSettingViewController(null);
-            NavigationController.PushViewController(vc, true);
-        }
-        #endregion
-
-        #region UICustomization
-        private void AddNavButton()
-        {
-            UIBarButtonItem addBtn = new UIBarButtonItem(UIBarButtonSystemItem.Add, AddButton_TouchUpInside);
-            UIBarButtonItem[] buttonArray = { addBtn };
-            NavigationItem.RightBarButtonItems = buttonArray;
-        }
-        #endregion
-
     }
 
+    /*
     #region Table View Stuff, including swipe to delete
     public class TableViewSource : UITableViewSource
     {
-        MyViewController vc;
+        NewOpponentViewController vc;
 
-        public TableViewSource(MyViewController _vc)
+        public TableViewSource(NewOpponentViewController _vc)
         {
             vc = _vc;
         }
@@ -124,6 +71,10 @@ namespace PKMNEVCalc
             {
                 cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "pokemonstyle");
             }
+
+
+
+
             cell.TextLabel.Text = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row].nickname;
             cell.DetailTextLabel.Text = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row].breed;
             cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
@@ -134,7 +85,7 @@ namespace PKMNEVCalc
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             // create a pokemon details vc
-            PokemonDetail pkmnToPass = new PokemonDetail();
+            PokemonBattled pkmnToPass = new PokemonBattled();
 
             if (indexPath.Section == 0 && FileManager.getInstance.pokemonDetailsStorage[indexPath.Row] != null)
             {
@@ -199,4 +150,6 @@ namespace PKMNEVCalc
         }
     }
     #endregion
+    */
 }
+

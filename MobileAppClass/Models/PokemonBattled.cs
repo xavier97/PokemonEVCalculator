@@ -6,6 +6,7 @@ namespace MobileAppClass
     /// </summary>
     public class PokemonBattled
     {
+        public String name { get; set; }
         public int attackEV { get; set; }
         public int defenseEV { get; set; }
         public int spAttackEV { get; set; }

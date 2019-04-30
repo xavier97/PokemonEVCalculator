@@ -87,6 +87,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -121,10 +122,15 @@
     </Compile>
     <Compile Include="Models\PokemonDetail.cs" />
     <Compile Include="Models\PokemonBattled.cs" />
+    <Compile Include="Screens\NewOpponentViewController.cs" />
+    <Compile Include="Screens\NewOpponentViewController.designer.cs">
+      <DependentUpon>NewOpponentViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\PokemonSettingViewController.xib" />
     <InterfaceDefinition Include="Screens\MyViewController.xib" />
+    <InterfaceDefinition Include="Screens\NewOpponentViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.2\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.2\build\netstandard2.0\NETStandard.Library.targets')" />

@@ -4,6 +4,7 @@ using UIKit;
 using System.Runtime.CompilerServices;
 using System.IO;
 //using MobileAppClass.Resources;
+using MobileAppClass.Screens;
 
 namespace PKMNEVCalc
 {
@@ -27,8 +28,12 @@ namespace PKMNEVCalc
 
             #region Add long press button gestures
             pokemonButton1.UserInteractionEnabled = true;
-            UILongPressGestureRecognizer longp = new UILongPressGestureRecognizer(LongPress);
-            pokemonButton1.AddGestureRecognizer(longp);
+            UILongPressGestureRecognizer longp1 = new UILongPressGestureRecognizer(LongPress);
+            UILongPressGestureRecognizer longp2 = new UILongPressGestureRecognizer(LongPress);
+            UILongPressGestureRecognizer longp3 = new UILongPressGestureRecognizer(LongPress);
+            pokemonButton1.AddGestureRecognizer(longp1);
+            pokemonButton2.AddGestureRecognizer(longp2);
+            pokemonButton3.AddGestureRecognizer(longp3);
             #endregion
 
             #region set up picker view
@@ -75,14 +80,23 @@ namespace PKMNEVCalc
         /// </summary>
         private void LongPress()
         {
+
             Console.WriteLine("Long press");
             var option = UIAlertController.Create(null, "Switch up on your opponent.", UIAlertControllerStyle.ActionSheet);
             option.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
-            option.AddAction(UIAlertAction.Create("New Opponent", UIAlertActionStyle.Default, null));
-            option.AddAction(UIAlertAction.Create("Delete Opponent", UIAlertActionStyle.Default, null));
+            option.AddAction(UIAlertAction.Create("New Opponent",
+                                                   UIAlertActionStyle.Default,
+                                                   GetNewOpponentScreen));
+            option.AddAction(UIAlertAction.Create("Delete Opponent",
+                                                   UIAlertActionStyle.Default,
+                                                   null));
             PresentViewController(option, animated: true, completionHandler: null);
+        }
 
-
+        void GetNewOpponentScreen(UIAlertAction obj)
+        {
+            NewOpponentViewController vc = new NewOpponentViewController();
+            NavigationController.PushViewController(vc, true);
         }
 
         public override void ViewWillAppear(bool animated)
