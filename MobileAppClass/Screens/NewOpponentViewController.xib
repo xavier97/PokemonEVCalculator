@@ -15,14 +15,17 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="264" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="264" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="4" y="0.0" width="406" height="736"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </tableView>
             </subviews>
             <constraints>
-                <constraint id="3150" firstItem="264" firstAttribute="centerX" secondItem="2" secondAttribute="centerX"/>
-                <constraint id="3726" firstItem="264" firstAttribute="centerY" secondItem="2" secondAttribute="centerY"/>
+                <constraint id="5906" firstItem="264" firstAttribute="centerX" secondItem="2" secondAttribute="centerX"/>
+                <constraint id="5907" firstItem="264" firstAttribute="centerY" secondItem="2" secondAttribute="centerY"/>
+                <constraint id="5908" firstAttribute="trailing" secondItem="264" secondAttribute="trailing" constant="4"/>
+                <constraint id="5909" firstItem="264" firstAttribute="bottom" secondItem="2" secondAttribute="bottom"/>
             </constraints>
         </view>
     </objects>

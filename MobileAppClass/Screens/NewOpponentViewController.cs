@@ -4,7 +4,6 @@ using UIKit;
 using System.Xml.Linq;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace MobileAppClass.Screens
 {
@@ -22,21 +21,22 @@ namespace MobileAppClass.Screens
             // Set up Nav Controller
             Title = "Foe";
 
-            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var library = Path.Combine(documents, "..", "Library");
-            var fileName = Path.Combine(library, "AllPokemon.xml");
+            // Set up Table View
+            MyFoePokemonTable.Source = new TableViewSource(this);
+        }
 
-            XDocument xDoc = XDocument.Load(fileName);
-            Console.WriteLine(xDoc);
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
 
-            XElement pokemon = XElement.Load(fileName);
+            MyFoePokemonTable.Hidden = false;
+        }
 
-            var queryAll = from mon in pokemon.Descendants("Pokemon")
-                           select (string)mon;
-                           
-            Console.WriteLine(queryAll);
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
 
-            //MyFoePokemonTable.Source = new TableViewSource(this);
+            MyFoePokemonTable.ReloadData();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -44,26 +44,29 @@ namespace MobileAppClass.Screens
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
         }
+
     }
 
-    /*
+
     #region Table View Stuff, including swipe to delete
     public class TableViewSource : UITableViewSource
     {
-        NewOpponentViewController vc;
+        readonly NewOpponentViewController vc;
+        readonly XDocument xDoc;
 
         public TableViewSource(NewOpponentViewController _vc)
         {
             vc = _vc;
+
+            // Load XML doc
+            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var library = Path.Combine(documents, "..", "Library");
+            var fileName = Path.Combine(library, "AllPokemon.xml");
+            xDoc = XDocument.Load(fileName);
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            // TODO: Test cell section/row
-            Console.WriteLine("Indexpath Section{0}  Row{1}",
-            indexPath.Section,
-            indexPath.Row);
-
             UITableViewCell cell;
             // try to get a reusable cell
             cell = tableView.DequeueReusableCell("pokemonstyle");
@@ -72,35 +75,36 @@ namespace MobileAppClass.Screens
                 cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "pokemonstyle");
             }
 
+            cell.TextLabel.Text = xDoc.Descendants("Name").ElementAt(indexPath.Row).Value;
+            cell.DetailTextLabel.Text = xDoc.Descendants("Name").Attributes("DexNum").ElementAt(indexPath.Row).Value;
 
-
-
-            cell.TextLabel.Text = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row].nickname;
-            cell.DetailTextLabel.Text = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row].breed;
-            cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 
             return cell;
         }
 
+        public override void RowDeselected(UITableView tableView, NSIndexPath indexPath)
+        {
+            tableView.CellAt(indexPath).Accessory = UITableViewCellAccessory.None;
+        }
+
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            // create a pokemon details vc
-            PokemonBattled pkmnToPass = new PokemonBattled();
+            tableView.CellAt(indexPath).Accessory = UITableViewCellAccessory.Checkmark;
 
-            if (indexPath.Section == 0 && FileManager.getInstance.pokemonDetailsStorage[indexPath.Row] != null)
-            {
-                pkmnToPass = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row];
-            }
-            else
-            {
-                throw new Exception("Bad section in rowSelected");
-                // dataToPass = "invalid data";
-            }
+            //if (indexPath.Section == 0 && FileManager.getInstance.pokemonDetailsStorage[indexPath.Row] != null)
+            //{
+            //    pkmnToPass = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row];
+            //}
+            //else
+            //{
+            //    throw new Exception("Bad section in rowSelected");
+            //    // dataToPass = "invalid data";
+            //}
 
-            PokemonSettingViewController pkmnSettingVC = new PokemonSettingViewController(indexPath.Row);
+            //PokemonSettingViewController pkmnSettingVC = new PokemonSettingViewController(indexPath.Row);
 
             // Push the edit display 
-            vc.NavigationController.PushViewController(pkmnSettingVC, true);
+            //vc.NavigationController.PushViewController(pkmnSettingVC, true);
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -112,7 +116,7 @@ namespace MobileAppClass.Screens
         {
             if (section == 0)
             {
-                return FileManager.getInstance.pokemonDetailsStorage.Count;
+                return xDoc.Descendants("Pokemon").Count();
             }
             else
             {
@@ -124,18 +128,6 @@ namespace MobileAppClass.Screens
         {
             switch (editingStyle)
             {
-                case UITableViewCellEditingStyle.Delete:
-
-                    // remove the item from the underlying data source
-                    FileManager.getInstance.pokemonDetailsStorage.RemoveAt(indexPath.Row);
-
-                    // delete the data from JSON
-                    FileManager.getInstance.DeletePokemon(indexPath.Row);
-
-                    // delete the row from the table
-                    tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
-
-                    break;
                 case UITableViewCellEditingStyle.None:
 
                     Console.WriteLine("CommitEditingStyle:None called");
@@ -146,10 +138,9 @@ namespace MobileAppClass.Screens
 
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
         {
-            return true; // return false if you wish to disable editing for a specific indexPath or for all rows
+            return false;
         }
     }
     #endregion
-    */
 }
 

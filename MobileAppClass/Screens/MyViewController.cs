@@ -24,31 +24,8 @@ namespace PKMNEVCalc
 
             MyPartyPokemonTable.Source = new TableViewSource(this);
 
-            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var library = Path.Combine(documents, "..", "Library");
-            var filename = Path.Combine(library, "AllPokemon.xml");
-
-            new XDocument(
-                new XElement("Pokemon",
-                new XElement("Wishiwashi", 
-                    new XElement("attackEV", "0"),
-                    new XElement("defenseEV", "0"),
-                    new XElement("spAttackEV", "0"),
-                    new XElement("spDefenseEV", "0"),
-                    new XElement("hpEV", "1"),
-                    new XElement("speedEV", "0")),
-                new XElement("Crabrawler",
-                    new XElement("attackEV", "1"),
-                    new XElement("defenseEV", "0"),
-                    new XElement("spAttackEV", "0"),
-                    new XElement("spDefenseEV", "0"),
-                    new XElement("hpEV", "0"),
-                    new XElement("speedEV", "0"))
-                )
-            )
-            .Save(filename);
-            Console.WriteLine(filename);
-
+            // Create the EV Pokedex that will be used later
+            FileManager.getInstance.CreatePokedexXML();
         }
 
         public override void ViewWillAppear(bool animated)

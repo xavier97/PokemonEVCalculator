@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using Newtonsoft.Json;
 namespace PKMNEVCalc
 {
@@ -100,6 +101,81 @@ namespace PKMNEVCalc
             {
                 streamwriter.Write(jsonData);
             }
+        }
+
+        public void CreatePokedexXML()
+        {
+
+            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var library = Path.Combine(documents, "..", "Library");
+            var filename = Path.Combine(library, "AllPokemon.xml");
+
+            new XDocument(
+                new XElement("EVPokedex",
+                    new XElement("Pokemon",
+                        new XElement("Name",
+                            new XAttribute("DexNum", "50"),
+                            "Alolan Diglett"),
+                        new XElement("attackEV", "0"),
+                        new XElement("defenseEV", "0"),
+                        new XElement("spAttackEV", "0"),
+                        new XElement("spDefenseEV", "0"),
+                        new XElement("hpEV", "0"),
+                        new XElement("speedEV", "1")),
+                    new XElement("Pokemon",
+                        new XElement("Name",
+                            new XAttribute("DexNum", "204"),
+                            "Pineco"),
+                        new XElement("attackEV", "0"),
+                        new XElement("defenseEV", "1"),
+                        new XElement("spAttackEV", "0"),
+                        new XElement("spDefenseEV", "0"),
+                        new XElement("hpEV", "0"),
+                        new XElement("speedEV", "0")),
+                    new XElement("Pokemon",
+                        new XElement("Name",
+                            new XAttribute("DexNum", "352"),
+                            "Kecleon"),
+                        new XElement("attackEV", "0"),
+                        new XElement("defenseEV", "0"),
+                        new XElement("spAttackEV", "0"),
+                        new XElement("spDefenseEV", "1"),
+                        new XElement("hpEV", "0"),
+                        new XElement("speedEV", "0")),
+                    new XElement("Pokemon",
+                        new XElement("Name",
+                            new XAttribute("DexNum", "548"),
+                            "Petilil"),
+                        new XElement("attackEV", "0"),
+                        new XElement("defenseEV", "0"),
+                        new XElement("spAttackEV", "1"),
+                        new XElement("spDefenseEV", "0"),
+                        new XElement("hpEV", "0"),
+                        new XElement("speedEV", "0")),
+                    new XElement("Pokemon",
+                        new XElement("Name",
+                            new XAttribute("DexNum", "739"),
+                            "Crabrawler"),
+                        new XElement("attackEV", "1"),
+                        new XElement("defenseEV", "0"),
+                        new XElement("spAttackEV", "0"),
+                        new XElement("spDefenseEV", "0"),
+                        new XElement("hpEV", "0"),
+                        new XElement("speedEV", "0")),
+                    new XElement("Pokemon",
+                        new XElement("Name",
+                            new XAttribute("DexNum", "746"),
+                            "Wishiwashi"),
+                        new XElement("attackEV", "0"),
+                        new XElement("defenseEV", "0"),
+                        new XElement("spAttackEV", "0"),
+                        new XElement("spDefenseEV", "0"),
+                        new XElement("hpEV", "1"),
+                        new XElement("speedEV", "0"))
+                )
+            )
+            .Save(filename);
+            Console.WriteLine(filename);
         }
     }
 }
