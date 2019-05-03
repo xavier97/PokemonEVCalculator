@@ -4,13 +4,19 @@ using UIKit;
 using System.Xml.Linq;
 using System.IO;
 using System.Linq;
+using PKMNEVCalc;
 
 namespace MobileAppClass.Screens
 {
     public partial class NewOpponentViewController : UIViewController
     {
-        public NewOpponentViewController() : base("NewOpponentViewController", null)
+        readonly int? rowToEdit;
+        readonly int buttonNumber;
+
+        public NewOpponentViewController(int? rowToEdit, int buttonNumber) : base("NewOpponentViewController", null)
         {
+            this.rowToEdit = rowToEdit;
+            this.buttonNumber = buttonNumber;
         }
 
         public override void ViewDidLoad()
@@ -22,7 +28,7 @@ namespace MobileAppClass.Screens
             Title = "Foe";
 
             // Set up Table View
-            MyFoePokemonTable.Source = new TableViewSource(this);
+            MyFoePokemonTable.Source = new TableViewSource(this, rowToEdit, buttonNumber);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -37,6 +43,7 @@ namespace MobileAppClass.Screens
             base.ViewDidAppear(animated);
 
             MyFoePokemonTable.ReloadData();
+
         }
 
         public override void DidReceiveMemoryWarning()
@@ -53,8 +60,10 @@ namespace MobileAppClass.Screens
     {
         readonly NewOpponentViewController vc;
         readonly XDocument xDoc;
+        readonly PokemonDetail pkmnToEdit = new PokemonDetail();
+        readonly int buttonNumber;
 
-        public TableViewSource(NewOpponentViewController _vc)
+        public TableViewSource(NewOpponentViewController _vc, int? rowToEdit, int buttonNumber)
         {
             vc = _vc;
 
@@ -63,6 +72,15 @@ namespace MobileAppClass.Screens
             var library = Path.Combine(documents, "..", "Library");
             var fileName = Path.Combine(library, "AllPokemon.xml");
             xDoc = XDocument.Load(fileName);
+
+            // Find selected Pokemon
+            if (rowToEdit != null)
+            {
+                pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
+            }
+
+            // Determine the button being accessed
+            this.buttonNumber = buttonNumber;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -78,6 +96,16 @@ namespace MobileAppClass.Screens
             cell.TextLabel.Text = xDoc.Descendants("Name").ElementAt(indexPath.Row).Value;
             cell.DetailTextLabel.Text = xDoc.Descendants("Name").Attributes("DexNum").ElementAt(indexPath.Row).Value;
 
+            // Load the checkmark on the previously selected Pokemon
+            if (pkmnToEdit.pokemonBattle1.Name == cell.TextLabel.Text)
+            {
+                cell.Accessory = UITableViewCellAccessory.Checkmark;
+                cell.Selected = true;
+            }
+            else
+            {
+                cell.Accessory = UITableViewCellAccessory.None;
+            }
 
             return cell;
         }
@@ -89,22 +117,46 @@ namespace MobileAppClass.Screens
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            tableView.CellAt(indexPath).Accessory = UITableViewCellAccessory.Checkmark;
+            // Clear all decorations from cells
+            foreach (UITableViewCell cell in tableView.VisibleCells)
+            {
+                cell.Accessory = UITableViewCellAccessory.None;
+            }
 
-            //if (indexPath.Section == 0 && FileManager.getInstance.pokemonDetailsStorage[indexPath.Row] != null)
-            //{
-            //    pkmnToPass = FileManager.getInstance.pokemonDetailsStorage[indexPath.Row];
-            //}
-            //else
-            //{
-            //    throw new Exception("Bad section in rowSelected");
-            //    // dataToPass = "invalid data";
-            //}
+            if (indexPath.Section == 0 && pkmnToEdit != null)
+            {
+                // Indicate this Pokemon is chosen
+                tableView.CellAt(indexPath).Accessory = UITableViewCellAccessory.Checkmark;
 
-            //PokemonSettingViewController pkmnSettingVC = new PokemonSettingViewController(indexPath.Row);
+                // Select the pokemon from XML
+                string name = xDoc.Descendants("Name").ElementAt(indexPath.Row).Value;
+                int attack = int.Parse(xDoc.Descendants("attackEV").ElementAt(indexPath.Row).Value);
+                int defense = int.Parse(xDoc.Descendants("defenseEV").ElementAt(indexPath.Row).Value);
+                int spAttack = int.Parse(xDoc.Descendants("spAttackEV").ElementAt(indexPath.Row).Value);
+                int spDefense = int.Parse(xDoc.Descendants("spDefenseEV").ElementAt(indexPath.Row).Value);
+                int hp = int.Parse(xDoc.Descendants("hpEV").ElementAt(indexPath.Row).Value);
+                int speed = int.Parse(xDoc.Descendants("speedEV").ElementAt(indexPath.Row).Value);
 
-            // Push the edit display 
-            //vc.NavigationController.PushViewController(pkmnSettingVC, true);
+                // Create new PokemonBattled object with specifications from XML
+                var pkmnToPass = new PokemonBattled(name, attack, defense, spAttack, spDefense, hp, speed);
+
+                // Persist pokemon battling as a part of the desired Pokemon's data
+                if (buttonNumber == 1)
+                    pkmnToEdit.pokemonBattle1 = pkmnToPass;
+                else if (buttonNumber == 2)
+                    pkmnToEdit.pokemonBattle2 = pkmnToPass;
+                else
+                    pkmnToEdit.pokemonBattle3 = pkmnToPass;
+
+                FileManager.getInstance.SavePokemon(null); // (editing)
+            }
+            else
+            {
+                throw new Exception("Bad section in rowSelected");
+                // dataToPass = "invalid data";
+            }
+
+
         }
 
         public override nint NumberOfSections(UITableView tableView)

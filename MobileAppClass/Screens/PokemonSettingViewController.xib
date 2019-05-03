@@ -28,10 +28,10 @@
                 <outlet property="SpDefEVTitleLabel" destination="3822" id="name-outlet-3822"/>
                 <outlet property="SpeedEVLabel" destination="6638" id="name-outlet-6638"/>
                 <outlet property="SpeedEVTitleLabel" destination="3806" id="name-outlet-3806"/>
-                <outlet property="pokemonButton1" destination="24118" id="name-outlet-24118"/>
                 <outlet property="pokemonButton2" destination="24701" id="name-outlet-24701"/>
-                <outlet property="pokemonButton3" destination="25364" id="name-outlet-25364"/>
+                <outlet property="pokemonButton1" destination="25364" id="name-outlet-25364"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="pokemonButton3" destination="24118" id="name-outlet-24118"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -207,7 +207,7 @@
                         <constraint id="31769" firstAttribute="height" constant="20"/>
                     </constraints>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24118">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="24118">
                     <rect key="frame" x="244.5" y="575" width="80" height="81"/>
                     <color key="backgroundColor" white="0.66666666666666696" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="No PKMN">
@@ -223,7 +223,7 @@
                         <constraint id="31780" firstAttribute="height" constant="81"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24701">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="24701">
                     <rect key="frame" x="144.5" y="575" width="80" height="81"/>
                     <color key="backgroundColor" white="0.66666666666666696" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="No PKMN">
@@ -240,7 +240,7 @@
                         <constraint id="31777" firstAttribute="height" constant="81"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25364">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="25364">
                     <rect key="frame" x="44.5" y="575" width="80" height="81"/>
                     <color key="backgroundColor" white="0.66666666666666696" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="No PKMN">

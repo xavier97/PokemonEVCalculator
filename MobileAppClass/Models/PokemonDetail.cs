@@ -1,4 +1,5 @@
 ﻿using System;
+using MobileAppClass;
 namespace PKMNEVCalc
 {
     /// <summary>
@@ -11,6 +12,7 @@ namespace PKMNEVCalc
         public string nickname { get; set; }
         public string heldItem { get; set; }
         public bool pokerus { get; set; }
+
         // EV Stats
         public int attackEV { get; set; }
         public int defenseEV { get; set; }
@@ -19,9 +21,10 @@ namespace PKMNEVCalc
         public int hpEV { get; set; }
         public int speedEV { get; set; }
 
-        public PokemonDetail()
-        {
-        }
+        // Pokemon battling
+        public PokemonBattled pokemonBattle1 { get; set; }
+        public PokemonBattled pokemonBattle2 { get; set; }
+        public PokemonBattled pokemonBattle3 { get; set; }
 
         // Testing
         public override string ToString()

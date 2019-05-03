@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using UIKit;
-using System.Runtime.CompilerServices;
 using System.IO;
 //using MobileAppClass.Resources;
 using MobileAppClass.Screens;
@@ -28,9 +26,9 @@ namespace PKMNEVCalc
 
             #region Add long press button gestures
             pokemonButton1.UserInteractionEnabled = true;
-            UILongPressGestureRecognizer longp1 = new UILongPressGestureRecognizer(LongPress);
-            UILongPressGestureRecognizer longp2 = new UILongPressGestureRecognizer(LongPress);
-            UILongPressGestureRecognizer longp3 = new UILongPressGestureRecognizer(LongPress);
+            UILongPressGestureRecognizer longp1 = new UILongPressGestureRecognizer(() => LongPress(1));
+            UILongPressGestureRecognizer longp2 = new UILongPressGestureRecognizer(() => LongPress(2));
+            UILongPressGestureRecognizer longp3 = new UILongPressGestureRecognizer(() => LongPress(3));
             pokemonButton1.AddGestureRecognizer(longp1);
             pokemonButton2.AddGestureRecognizer(longp2);
             pokemonButton3.AddGestureRecognizer(longp3);
@@ -71,6 +69,20 @@ namespace PKMNEVCalc
                 // Pre-fill the held item picker
                 HeldItemPicker.Select(pickerDataModel.Items.IndexOf(pkmnToEdit.heldItem), 0, true);
                 heldItem = pkmnToEdit.heldItem;
+
+                // Pre-fill the Pokemon Battle buttons
+                if (pkmnToEdit.pokemonBattle1.Name != null)
+                {
+                    pokemonButton1.SetTitle(pkmnToEdit.pokemonBattle1.Name, UIControlState.Normal);
+                }
+                if (pkmnToEdit.pokemonBattle2 != null)
+                {
+                    pokemonButton2.SetTitle(pkmnToEdit.pokemonBattle2.Name, UIControlState.Normal);
+                }
+                if (pkmnToEdit.pokemonBattle3 != null)
+                {
+                    pokemonButton3.SetTitle(pkmnToEdit.pokemonBattle3.Name, UIControlState.Normal);
+                }
             }
         }
 
@@ -78,25 +90,41 @@ namespace PKMNEVCalc
         /// Allows the option to (1) KO the Pokemon (if pokemonToBattle is not null) or 
         /// (2) select a new Pokemon to battle against
         /// </summary>
-        private void LongPress()
+        private void LongPress(int buttonNumber)
         {
-
-            Console.WriteLine("Long press");
             var option = UIAlertController.Create(null, "Switch up on your opponent.", UIAlertControllerStyle.ActionSheet);
             option.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
             option.AddAction(UIAlertAction.Create("New Opponent",
                                                    UIAlertActionStyle.Default,
-                                                   GetNewOpponentScreen));
+                                                   (obj) => { GetNewOpponentScreen(obj, buttonNumber); }));
             option.AddAction(UIAlertAction.Create("Delete Opponent",
                                                    UIAlertActionStyle.Default,
-                                                   null));
+                                                   (obj) => { DeleteOpponent(obj, buttonNumber); })); // TODO: ADD THE DELETE POKEMON OPTION
             PresentViewController(option, animated: true, completionHandler: null);
         }
 
-        void GetNewOpponentScreen(UIAlertAction obj)
+        private void DeleteOpponent(UIAlertAction obj, int buttonNumber)
         {
-            NewOpponentViewController vc = new NewOpponentViewController();
+            var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
+            if (buttonNumber == 1)
+            {
+                pkmnToEdit.pokemonBattle1 = null;
+            }
+            else if (buttonNumber == 2)
+            {
+                pkmnToEdit.pokemonBattle2 = null;
+            }
+            else
+            {
+                pkmnToEdit.pokemonBattle3 = null;
+            }
+        }
+
+        private void GetNewOpponentScreen(UIAlertAction obj, int buttonNumber)
+        {
+            NewOpponentViewController vc = new NewOpponentViewController(rowToEdit, buttonNumber);
             NavigationController.PushViewController(vc, true);
+            Console.WriteLine(buttonNumber);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -114,6 +142,25 @@ namespace PKMNEVCalc
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
+
+            // Update when coming back from other screen
+            var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
+            if (rowToEdit != null)
+            {
+                // Pre-fill the Pokemon Battle buttons
+                if (pkmnToEdit.pokemonBattle1.Name != null)
+                {
+                    pokemonButton1.SetTitle(pkmnToEdit.pokemonBattle1.Name, UIControlState.Normal);
+                }
+                if (pkmnToEdit.pokemonBattle2 != null)
+                {
+                    pokemonButton2.SetTitle(pkmnToEdit.pokemonBattle2.Name, UIControlState.Normal);
+                }
+                if (pkmnToEdit.pokemonBattle3 != null)
+                {
+                    pokemonButton3.SetTitle(pkmnToEdit.pokemonBattle3.Name, UIControlState.Normal);
+                }
+            }
         }
 
         public override void DidReceiveMemoryWarning()
@@ -143,7 +190,6 @@ namespace PKMNEVCalc
         private void PerformSave()
         {
             PokemonDetail pokemonToAddOrEdit;
-            PokemonDetail pkmnDetail = new PokemonDetail();
 
             if (rowToEdit == null) // Adding new record
             {
