@@ -45,7 +45,6 @@ namespace PKMNEVCalc
                 {
                     // Read from file 
                     var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    Console.WriteLine(path); // TODO: Test
                     var pathFile = Path.Combine(path, FILENAME);
 
                     if (File.Exists(pathFile) == false)
@@ -77,9 +76,10 @@ namespace PKMNEVCalc
                 // add mode
                 pkmnList.Add(pokemon); // add directly to the list.  Dont use the getter because it returns a COPY sorted.
             }
-            String jsonData = JsonConvert.SerializeObject(pokemonDetailsStorage);
+            String jsonData = JsonConvert.SerializeObject(pokemonDetailsStorage, Formatting.Indented);
             var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             Console.WriteLine(path);
+            Console.WriteLine(jsonData); // TODO TEST
             var pathFile = Path.Combine(path, FILENAME);
             using (var streamwriter = new StreamWriter(pathFile, false))
             {

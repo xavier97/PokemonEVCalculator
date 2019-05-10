@@ -3,6 +3,8 @@ using UIKit;
 using System.IO;
 //using MobileAppClass.Resources;
 using MobileAppClass.Screens;
+using System.Collections.Generic;
+using MobileAppClass;
 
 namespace PKMNEVCalc
 {
@@ -10,6 +12,7 @@ namespace PKMNEVCalc
     {
         int? rowToEdit;
         string heldItem; // Pokemon's held item selected from picker view
+        private readonly Dictionary<string, UIButton> pokemonBattleButtonDict = new Dictionary<string, UIButton>();
 
         public PokemonSettingViewController(int? rowToEditIn) : base("PokemonSettingViewController", null)
         {
@@ -25,10 +28,12 @@ namespace PKMNEVCalc
             SaveNavButton();
 
             #region Add long press button gestures
-            pokemonButton1.UserInteractionEnabled = true;
+            // Long press
             UILongPressGestureRecognizer longp1 = new UILongPressGestureRecognizer(() => LongPress(1));
             UILongPressGestureRecognizer longp2 = new UILongPressGestureRecognizer(() => LongPress(2));
             UILongPressGestureRecognizer longp3 = new UILongPressGestureRecognizer(() => LongPress(3));
+
+            // Add gestures
             pokemonButton1.AddGestureRecognizer(longp1);
             pokemonButton2.AddGestureRecognizer(longp2);
             pokemonButton3.AddGestureRecognizer(longp3);
@@ -54,6 +59,12 @@ namespace PKMNEVCalc
             };
             #endregion
 
+            #region set up button variables
+            pokemonBattleButtonDict["pokemonButton1"] = pokemonButton1;
+            pokemonBattleButtonDict["pokemonButton2"] = pokemonButton2;
+            pokemonBattleButtonDict["pokemonButton3"] = pokemonButton3;
+            #endregion
+
             // Edit mode - pre-fill data
             if (rowToEdit != null)
             {
@@ -71,17 +82,15 @@ namespace PKMNEVCalc
                 heldItem = pkmnToEdit.heldItem;
 
                 // Pre-fill the Pokemon Battle buttons
-                if (pkmnToEdit.pokemonBattle1.Name != null)
+                foreach (KeyValuePair<string, PokemonBattled> entry in pkmnToEdit.GetAllButtons())
                 {
-                    pokemonButton1.SetTitle(pkmnToEdit.pokemonBattle1.Name, UIControlState.Normal);
-                }
-                if (pkmnToEdit.pokemonBattle2 != null)
-                {
-                    pokemonButton2.SetTitle(pkmnToEdit.pokemonBattle2.Name, UIControlState.Normal);
-                }
-                if (pkmnToEdit.pokemonBattle3 != null)
-                {
-                    pokemonButton3.SetTitle(pkmnToEdit.pokemonBattle3.Name, UIControlState.Normal);
+                    int count = 1;
+                    if (pkmnToEdit.GetAButton(count) != null)
+                    {
+                        pokemonBattleButtonDict["pokemonButton" + count].SetTitle(pkmnToEdit.GetAButton(count).Name,
+                            UIControlState.Normal);
+                    }
+                    count++;
                 }
             }
         }
@@ -106,18 +115,10 @@ namespace PKMNEVCalc
         private void DeleteOpponent(UIAlertAction obj, int buttonNumber)
         {
             var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
-            if (buttonNumber == 1)
-            {
-                pkmnToEdit.pokemonBattle1 = null;
-            }
-            else if (buttonNumber == 2)
-            {
-                pkmnToEdit.pokemonBattle2 = null;
-            }
-            else
-            {
-                pkmnToEdit.pokemonBattle3 = null;
-            }
+
+            pkmnToEdit.SetPokemonBattled(buttonNumber, null);
+            InvokeOnMainThread(() => { pokemonBattleButtonDict["pokemonButton" + buttonNumber]
+                .SetTitle("No PKMN", UIControlState.Normal); });
         }
 
         private void GetNewOpponentScreen(UIAlertAction obj, int buttonNumber)
@@ -131,34 +132,70 @@ namespace PKMNEVCalc
         {
             base.ViewWillAppear(animated);
 
-            Title = PokemonNicknameText.Text;
+            if (rowToEdit != null)
+            {
+                PokemonDetail pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
 
-            // wire up title to nickname
-            PokemonNicknameText.AllEditingEvents += (sender, e) => {
                 Title = PokemonNicknameText.Text;
-            };
+
+                // wire up title to nickname
+                PokemonNicknameText.AllEditingEvents += (sender, e) =>
+                {
+                    Title = PokemonNicknameText.Text;
+                };
+            }
+
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
 
-            // Update when coming back from other screen
-            var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
             if (rowToEdit != null)
             {
+                var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
+
+                // Wire up buttons to touch event
+                pokemonButton1.TouchUpInside += (sender, ea) =>
+                {
+                    pkmnToEdit.attackEV += pkmnToEdit.GetAButton(1).AttackEV;
+                    pkmnToEdit.defenseEV += pkmnToEdit.GetAButton(1).DefenseEV;
+                    pkmnToEdit.spAttackEV += pkmnToEdit.GetAButton(1).SpAttackEV;
+                    pkmnToEdit.spDefenseEV += pkmnToEdit.GetAButton(1).SpDefenseEV;
+                    pkmnToEdit.speedEV += pkmnToEdit.GetAButton(1).SpeedEV;
+                    pkmnToEdit.hpEV += pkmnToEdit.GetAButton(1).HpEV;
+                };
+
+                pokemonButton2.TouchUpInside += (sender, ea) =>
+                {
+                    pkmnToEdit.attackEV += pkmnToEdit.GetAButton(2).AttackEV;
+                    pkmnToEdit.defenseEV += pkmnToEdit.GetAButton(2).DefenseEV;
+                    pkmnToEdit.spAttackEV += pkmnToEdit.GetAButton(2).SpAttackEV;
+                    pkmnToEdit.spDefenseEV += pkmnToEdit.GetAButton(2).SpDefenseEV;
+                    pkmnToEdit.speedEV += pkmnToEdit.GetAButton(2).SpeedEV;
+                    pkmnToEdit.hpEV += pkmnToEdit.GetAButton(2).HpEV;
+                };
+
+                pokemonButton3.TouchUpInside += (sender, ea) =>
+                {
+                    pkmnToEdit.attackEV += pkmnToEdit.GetAButton(3).AttackEV;
+                    pkmnToEdit.defenseEV += pkmnToEdit.GetAButton(3).DefenseEV;
+                    pkmnToEdit.spAttackEV += pkmnToEdit.GetAButton(3).SpAttackEV;
+                    pkmnToEdit.spDefenseEV += pkmnToEdit.GetAButton(3).SpDefenseEV;
+                    pkmnToEdit.speedEV += pkmnToEdit.GetAButton(3).SpeedEV;
+                    pkmnToEdit.hpEV += pkmnToEdit.GetAButton(3).HpEV;
+                };
+
+                // Update when coming back from other screen
                 // Pre-fill the Pokemon Battle buttons
-                if (pkmnToEdit.pokemonBattle1.Name != null)
+                for (int count = 1; count <= pkmnToEdit.GetAllButtons().Count; count++)
                 {
-                    pokemonButton1.SetTitle(pkmnToEdit.pokemonBattle1.Name, UIControlState.Normal);
-                }
-                if (pkmnToEdit.pokemonBattle2 != null)
-                {
-                    pokemonButton2.SetTitle(pkmnToEdit.pokemonBattle2.Name, UIControlState.Normal);
-                }
-                if (pkmnToEdit.pokemonBattle3 != null)
-                {
-                    pokemonButton3.SetTitle(pkmnToEdit.pokemonBattle3.Name, UIControlState.Normal);
+                    Console.WriteLine(count);
+                    if (pkmnToEdit.GetAButton(count) != null)
+                    {
+                        pokemonBattleButtonDict["pokemonButton" + count].SetTitle(pkmnToEdit.GetAButton(count).Name,
+                            UIControlState.Normal);
+                    }
                 }
             }
         }
@@ -206,7 +243,8 @@ namespace PKMNEVCalc
             pokemonToAddOrEdit.nickname = PokemonNicknameText.Text.Trim();
             pokemonToAddOrEdit.pokerus = PokerusSwitch.On;
             pokemonToAddOrEdit.heldItem = heldItem;
-            Console.WriteLine(heldItem);
+
+            Console.WriteLine(pokemonToAddOrEdit);
 
             if (rowToEdit == null)
             {
