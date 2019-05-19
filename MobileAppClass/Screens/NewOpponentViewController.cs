@@ -5,7 +5,6 @@ using System.Xml.Linq;
 using System.IO;
 using System.Linq;
 using PKMNEVCalc;
-using System.Collections.Generic;
 
 namespace MobileAppClass.Screens
 {
@@ -96,6 +95,7 @@ namespace MobileAppClass.Screens
 
             cell.TextLabel.Text = xDoc.Descendants("Name").ElementAt(indexPath.Row).Value;
             cell.DetailTextLabel.Text = xDoc.Descendants("Name").Attributes("DexNum").ElementAt(indexPath.Row).Value;
+            cell.ImageView.Image = UIImage.FromBundle(xDoc.Descendants("Name").Attributes("DexNum").ElementAt(indexPath.Row).Value);
 
             // Load the checkmark on the previously selected Pokemon (plural)
             for (int count = 1; count <= pkmnToEdit.GetAllButtons().Count; count++)

@@ -86,6 +86,14 @@ namespace PKMNEVCalc
                 SpDefEVLabel.Text = pkmnToEdit.spDefenseEV.ToString();
                 SpeedEVLabel.Text = pkmnToEdit.speedEV.ToString();
                 HPEVLabel.Text = pkmnToEdit.hpEV.ToString();
+
+                // Pre-fill the images
+                var toBattle1 = pkmnToEdit.GetAButton(1).Name;
+                var toBattle2 = pkmnToEdit.GetAButton(2).Name;
+                var toBattle3 = pkmnToEdit.GetAButton(3).Name;
+                pokemonButton1.SetImage(UIImage.FromBundle(toBattle1), UIControlState.Normal);
+                pokemonButton2.SetImage(UIImage.FromBundle(toBattle2), UIControlState.Normal);
+                pokemonButton3.SetImage(UIImage.FromBundle(toBattle3), UIControlState.Normal);
             }
         }
 
@@ -179,7 +187,12 @@ namespace PKMNEVCalc
                     Console.WriteLine(count);
                     if (pkmnToEdit.GetAButton(count) != null)
                     {
+                        // title
                         pokemonBattleButtonDict["pokemonButton" + count].SetTitle(pkmnToEdit.GetAButton(count).Name,
+                            UIControlState.Normal);
+                        // image
+                        pokemonBattleButtonDict["pokemonButton" + count].SetImage(
+                            UIImage.FromBundle(pkmnToEdit.GetAButton(count).Name),
                             UIControlState.Normal);
                     }
                 }

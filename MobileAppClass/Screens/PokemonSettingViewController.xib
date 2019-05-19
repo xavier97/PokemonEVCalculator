@@ -29,9 +29,9 @@
                 <outlet property="SpeedEVLabel" destination="6638" id="name-outlet-6638"/>
                 <outlet property="SpeedEVTitleLabel" destination="3806" id="name-outlet-3806"/>
                 <outlet property="pokemonButton2" destination="24701" id="name-outlet-24701"/>
-                <outlet property="pokemonButton1" destination="25364" id="name-outlet-25364"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
                 <outlet property="pokemonButton3" destination="24118" id="name-outlet-24118"/>
+                <outlet property="pokemonButton1" destination="32842" id="name-outlet-32842"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -240,8 +240,8 @@
                         <constraint id="31777" firstAttribute="height" constant="81"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="25364">
-                    <rect key="frame" x="44.5" y="575" width="80" height="81"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="32842">
+                    <rect key="frame" x="44" y="575" width="80" height="81"/>
                     <color key="backgroundColor" white="0.66666666666666696" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="No PKMN">
                         <color key="titleColor" red="0.98431372549019602" green="0.0" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
@@ -252,8 +252,9 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <constraints>
-                        <constraint id="31772" firstAttribute="width" constant="80"/>
-                        <constraint id="31773" firstAttribute="height" constant="81"/>
+                        <constraint id="32843" firstAttribute="width" constant="80"/>
+                        <constraint id="32844" firstAttribute="height" constant="81"/>
+                        <constraint id="32845" firstAttribute="height" constant="81"/>
                     </constraints>
                 </button>
             </subviews>
@@ -292,8 +293,6 @@
                 <constraint id="31763" firstItem="6662" firstAttribute="top" secondItem="6654" secondAttribute="bottom" constant="16"/>
                 <constraint id="31766" firstItem="6670" firstAttribute="top" secondItem="6662" secondAttribute="bottom" constant="18"/>
                 <constraint id="31767" firstItem="6670" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" constant="132"/>
-                <constraint id="31770" firstItem="25364" firstAttribute="top" secondItem="3692" secondAttribute="bottom" constant="46"/>
-                <constraint id="31771" firstAttribute="centerX" secondItem="25364" secondAttribute="centerX" constant="103"/>
                 <constraint id="31774" firstAttribute="centerX" secondItem="24701" secondAttribute="centerX" constant="3"/>
                 <constraint id="31778" firstItem="24701" firstAttribute="top" secondItem="3814" secondAttribute="bottom" constant="46"/>
                 <constraint id="31781" firstItem="24118" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" constant="97"/>
@@ -302,6 +301,8 @@
                 <constraint id="32463" firstItem="6638" firstAttribute="top" secondItem="6495" secondAttribute="bottom" constant="16"/>
                 <constraint id="32468" firstAttribute="centerX" secondItem="6646" secondAttribute="centerX" constant="63"/>
                 <constraint id="32469" firstItem="6646" firstAttribute="top" secondItem="6638" secondAttribute="bottom" constant="18"/>
+                <constraint id="32849" firstItem="32842" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="44"/>
+                <constraint id="32851" firstItem="32842" firstAttribute="top" secondItem="3692" secondAttribute="bottom" constant="46"/>
             </constraints>
         </view>
     </objects>

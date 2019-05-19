@@ -85,19 +85,73 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Crabrawler.imageset\739Crabrawler.png" />
+    <ImageAsset Include="Assets.xcassets\Crabrawler.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Crabrawler.imageset\739Crabrawler-1.png" />
+    <ImageAsset Include="Assets.xcassets\Petilil.imageset\548Petilil.png" />
+    <ImageAsset Include="Assets.xcassets\Petilil.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Alolan Diglett.imageset\050Diglett.png" />
+    <ImageAsset Include="Assets.xcassets\Alolan Diglett.imageset\050Diglett-1.png" />
+    <ImageAsset Include="Assets.xcassets\Alolan Diglett.imageset\050Diglett-2.png" />
+    <ImageAsset Include="Assets.xcassets\Alolan Diglett.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Wishiwashi.imageset\746Wishiwashi.png" />
+    <ImageAsset Include="Assets.xcassets\Wishiwashi.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Kecleon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Kecleon.imageset\352Kecleon.png" />
+    <ImageAsset Include="Assets.xcassets\Pineco.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Pineco.imageset\204Pineco.png" />
+    <ImageAsset Include="Sprites.xcassets\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\204.imageset\204MS.png" />
+    <ImageAsset Include="Sprites.xcassets\204.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\746.imageset\746MS.png" />
+    <ImageAsset Include="Sprites.xcassets\746.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\548.imageset\548MS.png" />
+    <ImageAsset Include="Sprites.xcassets\548.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\739.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\739.imageset\739MS.png" />
+    <ImageAsset Include="Sprites.xcassets\352.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\352.imageset\352MS.png" />
+    <ImageAsset Include="Assets.xcassets\Pikachu.imageset\025Pikachu.png" />
+    <ImageAsset Include="Assets.xcassets\Pikachu.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\025.imageset\025MS.png" />
+    <ImageAsset Include="Sprites.xcassets\025.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Darkrai.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Darkrai.imageset\491Darkrai.png" />
+    <ImageAsset Include="Sprites.xcassets\491.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\491.imageset\491MS.png" />
+    <ImageAsset Include="Sprites.xcassets\050.imageset\Contents.json" />
+    <ImageAsset Include="Sprites.xcassets\050.imageset\050MS.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Screens\" />
     <Folder Include="Models\" />
     <Folder Include="File Saving\" />
+    <Folder Include="Assets.xcassets\Crabrawler.imageset\" />
+    <Folder Include="Assets.xcassets\Petilil.imageset\" />
+    <Folder Include="Assets.xcassets\Alolan Diglett.imageset\" />
+    <Folder Include="Assets.xcassets\Wishiwashi.imageset\" />
+    <Folder Include="Assets.xcassets\Kecleon.imageset\" />
+    <Folder Include="Assets.xcassets\Pineco.imageset\" />
+    <Folder Include="Sprites.xcassets\204.imageset\" />
+    <Folder Include="Sprites.xcassets\746.imageset\" />
+    <Folder Include="Sprites.xcassets\548.imageset\" />
+    <Folder Include="Sprites.xcassets\739.imageset\" />
+    <Folder Include="Sprites.xcassets\352.imageset\" />
+    <Folder Include="Assets.xcassets\Pikachu.imageset\" />
+    <Folder Include="Sprites.xcassets\025.imageset\" />
+    <Folder Include="Assets.xcassets\Darkrai.imageset\" />
+    <Folder Include="Sprites.xcassets\491.imageset\" />
+    <Folder Include="Sprites.xcassets\050.imageset\" />
+    <Folder Include="Sprites.xcassets\.imageset\" />
+    <Folder Include="Sprites.xcassets\050.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -133,5 +187,5 @@
     <InterfaceDefinition Include="Screens\NewOpponentViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\packages\NETStandard.Library.2.0.2\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.2\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>
