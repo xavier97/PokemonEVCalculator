@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+
 namespace PKMNEVCalc
 {
     public class FileManager
@@ -60,11 +61,11 @@ namespace PKMNEVCalc
                             var myJsonFromFile = streamReader.ReadToEnd();
                             Console.WriteLine(myJsonFromFile);
                             pkmnList = JsonConvert.DeserializeObject<List<PokemonDetail>>(myJsonFromFile).OrderByDescending(x => x.nickname).ToList();
+                            //Console.WriteLine("button 1: " + pkmnList[0].PokemonBattleDictionary["pokemonButton1"].Name);
                         }
                     }
                 }
                 return pkmnList.OrderByDescending(x => x.nickname).ToList();
-
             }
         }
 

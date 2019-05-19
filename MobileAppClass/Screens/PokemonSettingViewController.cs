@@ -1,7 +1,5 @@
 ﻿using System;
 using UIKit;
-using System.IO;
-//using MobileAppClass.Resources;
 using MobileAppClass.Screens;
 using System.Collections.Generic;
 using MobileAppClass;
@@ -40,7 +38,7 @@ namespace PKMNEVCalc
             #endregion
 
             #region set up picker view
-            // create our simple picker model
+            // create a simple picker model
             var pickerDataModel = new PickerDataModel();
             pickerDataModel.Items.Add("-- None --");
             pickerDataModel.Items.Add("Power Weight");
@@ -81,17 +79,13 @@ namespace PKMNEVCalc
                 HeldItemPicker.Select(pickerDataModel.Items.IndexOf(pkmnToEdit.heldItem), 0, true);
                 heldItem = pkmnToEdit.heldItem;
 
-                // Pre-fill the Pokemon Battle buttons
-                foreach (KeyValuePair<string, PokemonBattled> entry in pkmnToEdit.GetAllButtons())
-                {
-                    int count = 1;
-                    if (pkmnToEdit.GetAButton(count) != null)
-                    {
-                        pokemonBattleButtonDict["pokemonButton" + count].SetTitle(pkmnToEdit.GetAButton(count).Name,
-                            UIControlState.Normal);
-                    }
-                    count++;
-                }
+                // Pre-fill the stats
+                AttackEVLabel.Text = pkmnToEdit.attackEV.ToString();
+                DefenseEVLabel.Text = pkmnToEdit.defenseEV.ToString();
+                SpAtkEVLabel.Text = pkmnToEdit.spAttackEV.ToString();
+                SpDefEVLabel.Text = pkmnToEdit.spDefenseEV.ToString();
+                SpeedEVLabel.Text = pkmnToEdit.speedEV.ToString();
+                HPEVLabel.Text = pkmnToEdit.hpEV.ToString();
             }
         }
 
@@ -134,17 +128,15 @@ namespace PKMNEVCalc
 
             if (rowToEdit != null)
             {
-                PokemonDetail pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
-
-                Title = PokemonNicknameText.Text;
+                //PokemonDetail pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
 
                 // wire up title to nickname
+                Title = PokemonNicknameText.Text;
                 PokemonNicknameText.AllEditingEvents += (sender, e) =>
                 {
                     Title = PokemonNicknameText.Text;
                 };
             }
-
         }
 
         public override void ViewDidAppear(bool animated)
@@ -156,35 +148,29 @@ namespace PKMNEVCalc
                 var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
 
                 // Wire up buttons to touch event
-                pokemonButton1.TouchUpInside += (sender, ea) =>
+                if (pkmnToEdit.GetAButton(1) != null)
                 {
-                    pkmnToEdit.attackEV += pkmnToEdit.GetAButton(1).AttackEV;
-                    pkmnToEdit.defenseEV += pkmnToEdit.GetAButton(1).DefenseEV;
-                    pkmnToEdit.spAttackEV += pkmnToEdit.GetAButton(1).SpAttackEV;
-                    pkmnToEdit.spDefenseEV += pkmnToEdit.GetAButton(1).SpDefenseEV;
-                    pkmnToEdit.speedEV += pkmnToEdit.GetAButton(1).SpeedEV;
-                    pkmnToEdit.hpEV += pkmnToEdit.GetAButton(1).HpEV;
-                };
+                    pokemonButton1.TouchUpInside += (sender, ea) =>
+                    {
+                        CalculateStats(pkmnToEdit.GetAButton(1));
+                    };
+                }
 
-                pokemonButton2.TouchUpInside += (sender, ea) =>
+                if (pkmnToEdit.GetAButton(2) != null)
                 {
-                    pkmnToEdit.attackEV += pkmnToEdit.GetAButton(2).AttackEV;
-                    pkmnToEdit.defenseEV += pkmnToEdit.GetAButton(2).DefenseEV;
-                    pkmnToEdit.spAttackEV += pkmnToEdit.GetAButton(2).SpAttackEV;
-                    pkmnToEdit.spDefenseEV += pkmnToEdit.GetAButton(2).SpDefenseEV;
-                    pkmnToEdit.speedEV += pkmnToEdit.GetAButton(2).SpeedEV;
-                    pkmnToEdit.hpEV += pkmnToEdit.GetAButton(2).HpEV;
-                };
+                    pokemonButton2.TouchUpInside += (sender, ea) =>
+                    {
+                        CalculateStats(pkmnToEdit.GetAButton(2));
+                    };
+                }
 
-                pokemonButton3.TouchUpInside += (sender, ea) =>
+                if (pkmnToEdit.GetAButton(3) != null)
                 {
-                    pkmnToEdit.attackEV += pkmnToEdit.GetAButton(3).AttackEV;
-                    pkmnToEdit.defenseEV += pkmnToEdit.GetAButton(3).DefenseEV;
-                    pkmnToEdit.spAttackEV += pkmnToEdit.GetAButton(3).SpAttackEV;
-                    pkmnToEdit.spDefenseEV += pkmnToEdit.GetAButton(3).SpDefenseEV;
-                    pkmnToEdit.speedEV += pkmnToEdit.GetAButton(3).SpeedEV;
-                    pkmnToEdit.hpEV += pkmnToEdit.GetAButton(3).HpEV;
-                };
+                    pokemonButton3.TouchUpInside += (sender, ea) =>
+                    {
+                        CalculateStats(pkmnToEdit.GetAButton(3));
+                    };
+                }
 
                 // Update when coming back from other screen
                 // Pre-fill the Pokemon Battle buttons
@@ -198,6 +184,54 @@ namespace PKMNEVCalc
                     }
                 }
             }
+        }
+
+        private void CalculateStats(PokemonBattled pokemonBattled)
+        {
+            // pokemon battled
+            int atkEV = pokemonBattled.AttackEV;
+            int defEV = pokemonBattled.DefenseEV;
+            int spAtkEV = pokemonBattled.SpAttackEV;
+            int spDefEV = pokemonBattled.SpDefenseEV;
+            int hpEV = pokemonBattled.HpEV;
+            int speedEV = pokemonBattled.SpeedEV;
+
+            // pokerus
+            var mult = 1;
+            if (PokerusSwitch.Enabled)
+                mult = 2;
+
+            // held item
+            const int powerYield = 8;
+            switch (heldItem)
+            {
+                case "Power Weight":
+                    hpEV += powerYield;
+                    break;
+                case "Power Bracer":
+                    atkEV += powerYield;
+                    break;
+                case "Power Belt":
+                    defEV += powerYield;
+                    break;
+                case "Power Lens":
+                    spAtkEV += powerYield;
+                    break;
+                case "Power Band":
+                    spDefEV += powerYield;
+                    break;
+                case "Power Anklet":
+                    speedEV += powerYield;
+                    break;
+            }
+
+            // Calculate totals and display
+            HPEVLabel.Text = (Int32.Parse(HPEVLabel.Text) + (hpEV * mult)).ToString();
+            AttackEVLabel.Text = (Int32.Parse(AttackEVLabel.Text) + (atkEV * mult)).ToString();
+            DefenseEVLabel.Text = (Int32.Parse(DefenseEVLabel.Text) + (defEV * mult)).ToString();
+            SpAtkEVLabel.Text = (Int32.Parse(SpAtkEVLabel.Text) + (spAtkEV * mult)).ToString();
+            SpDefEVLabel.Text = (Int32.Parse(SpDefEVLabel.Text) + (spDefEV * mult)).ToString();
+            SpeedEVLabel.Text = (Int32.Parse(SpeedEVLabel.Text) + (speedEV * mult)).ToString();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -244,6 +278,13 @@ namespace PKMNEVCalc
             pokemonToAddOrEdit.pokerus = PokerusSwitch.On;
             pokemonToAddOrEdit.heldItem = heldItem;
 
+            pokemonToAddOrEdit.attackEV = Int32.Parse(AttackEVLabel.Text);
+            pokemonToAddOrEdit.defenseEV = Int32.Parse(DefenseEVLabel.Text);
+            pokemonToAddOrEdit.spAttackEV = Int32.Parse(SpAtkEVLabel.Text);
+            pokemonToAddOrEdit.spDefenseEV = Int32.Parse(SpDefEVLabel.Text);
+            pokemonToAddOrEdit.speedEV = Int32.Parse(SpeedEVLabel.Text);
+            pokemonToAddOrEdit.hpEV = Int32.Parse(HPEVLabel.Text);
+
             Console.WriteLine(pokemonToAddOrEdit);
 
             if (rowToEdit == null)
@@ -253,8 +294,6 @@ namespace PKMNEVCalc
             }
             else
             {
-                Console.WriteLine(pokemonToAddOrEdit.heldItem);
-
                 // editing
                 FileManager.getInstance.SavePokemon(null);
             }
