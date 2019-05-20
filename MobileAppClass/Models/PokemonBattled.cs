@@ -14,7 +14,16 @@ namespace MobileAppClass
         public int HpEV { get; set; }
         public int SpeedEV { get; set; }
 
-        public PokemonBattled() { }
+        public PokemonBattled() 
+        {
+            Name = string.Empty;
+            AttackEV = 0;
+            DefenseEV = 0;
+            SpAttackEV = 0;
+            SpDefenseEV = 0;
+            HpEV = 0;
+            SpeedEV = 0;
+        }
 
         public PokemonBattled(string name, int attack, int defense, int spAttack, int spDefense, int hp, int speed)
         {
@@ -25,6 +34,17 @@ namespace MobileAppClass
             this.SpDefenseEV = spDefense;
             this.HpEV = hp;
             this.SpeedEV = speed;
+        }
+
+        internal void Clear()
+        {
+            Name = string.Empty;
+            AttackEV = 0;
+            DefenseEV = 0;
+            SpAttackEV = 0;
+            SpDefenseEV = 0;
+            HpEV = 0;
+            SpeedEV = 0;
         }
     }
 }

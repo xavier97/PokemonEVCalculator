@@ -87,13 +87,22 @@ namespace PKMNEVCalc
                 SpeedEVLabel.Text = pkmnToEdit.speedEV.ToString();
                 HPEVLabel.Text = pkmnToEdit.hpEV.ToString();
 
-                // Pre-fill the images
-                var toBattle1 = pkmnToEdit.GetAButton(1).Name;
-                var toBattle2 = pkmnToEdit.GetAButton(2).Name;
-                var toBattle3 = pkmnToEdit.GetAButton(3).Name;
-                pokemonButton1.SetImage(UIImage.FromBundle(toBattle1), UIControlState.Normal);
-                pokemonButton2.SetImage(UIImage.FromBundle(toBattle2), UIControlState.Normal);
-                pokemonButton3.SetImage(UIImage.FromBundle(toBattle3), UIControlState.Normal);
+                // Pre-fill the images/enable buttons
+                if (pkmnToEdit.GetAButton(1).Name != string.Empty)
+                {
+                    var toBattle1 = pkmnToEdit.GetAButton(1).Name;
+                    pokemonButton1.SetImage(UIImage.FromBundle(toBattle1), UIControlState.Normal);
+                }
+                if (pkmnToEdit.GetAButton(2).Name != string.Empty)
+                {
+                    var toBattle2 = pkmnToEdit.GetAButton(2).Name;
+                    pokemonButton2.SetImage(UIImage.FromBundle(toBattle2), UIControlState.Normal);
+                }
+                if (pkmnToEdit.GetAButton(3).Name != string.Empty)
+                {
+                    var toBattle3 = pkmnToEdit.GetAButton(3).Name;
+                    pokemonButton3.SetImage(UIImage.FromBundle(toBattle3), UIControlState.Normal);
+                }
             }
         }
 
@@ -118,7 +127,7 @@ namespace PKMNEVCalc
         {
             var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
 
-            pkmnToEdit.SetPokemonBattled(buttonNumber, null);
+            pkmnToEdit.GetAButton(buttonNumber).Clear();
             InvokeOnMainThread(() => { pokemonBattleButtonDict["pokemonButton" + buttonNumber]
                 .SetTitle("No PKMN", UIControlState.Normal); });
         }
@@ -185,7 +194,7 @@ namespace PKMNEVCalc
                 for (int count = 1; count <= pkmnToEdit.GetAllButtons().Count; count++)
                 {
                     Console.WriteLine(count);
-                    if (pkmnToEdit.GetAButton(count) != null)
+                    if (pkmnToEdit.GetAButton(count).Name != string.Empty)
                     {
                         // title
                         pokemonBattleButtonDict["pokemonButton" + count].SetTitle(pkmnToEdit.GetAButton(count).Name,
@@ -201,50 +210,53 @@ namespace PKMNEVCalc
 
         private void CalculateStats(PokemonBattled pokemonBattled)
         {
-            // pokemon battled
-            int atkEV = pokemonBattled.AttackEV;
-            int defEV = pokemonBattled.DefenseEV;
-            int spAtkEV = pokemonBattled.SpAttackEV;
-            int spDefEV = pokemonBattled.SpDefenseEV;
-            int hpEV = pokemonBattled.HpEV;
-            int speedEV = pokemonBattled.SpeedEV;
-
-            // pokerus
-            var mult = 1;
-            if (PokerusSwitch.Enabled)
-                mult = 2;
-
-            // held item
-            const int powerYield = 8;
-            switch (heldItem)
+            if (pokemonBattled.Name != string.Empty)
             {
-                case "Power Weight":
-                    hpEV += powerYield;
-                    break;
-                case "Power Bracer":
-                    atkEV += powerYield;
-                    break;
-                case "Power Belt":
-                    defEV += powerYield;
-                    break;
-                case "Power Lens":
-                    spAtkEV += powerYield;
-                    break;
-                case "Power Band":
-                    spDefEV += powerYield;
-                    break;
-                case "Power Anklet":
-                    speedEV += powerYield;
-                    break;
-            }
+                // pokemon battled
+                int atkEV = pokemonBattled.AttackEV;
+                int defEV = pokemonBattled.DefenseEV;
+                int spAtkEV = pokemonBattled.SpAttackEV;
+                int spDefEV = pokemonBattled.SpDefenseEV;
+                int hpEV = pokemonBattled.HpEV;
+                int speedEV = pokemonBattled.SpeedEV;
 
-            // Calculate totals and display
-            HPEVLabel.Text = (Int32.Parse(HPEVLabel.Text) + (hpEV * mult)).ToString();
-            AttackEVLabel.Text = (Int32.Parse(AttackEVLabel.Text) + (atkEV * mult)).ToString();
-            DefenseEVLabel.Text = (Int32.Parse(DefenseEVLabel.Text) + (defEV * mult)).ToString();
-            SpAtkEVLabel.Text = (Int32.Parse(SpAtkEVLabel.Text) + (spAtkEV * mult)).ToString();
-            SpDefEVLabel.Text = (Int32.Parse(SpDefEVLabel.Text) + (spDefEV * mult)).ToString();
-            SpeedEVLabel.Text = (Int32.Parse(SpeedEVLabel.Text) + (speedEV * mult)).ToString();
+                // pokerus
+                var mult = 1;
+                if (PokerusSwitch.On)
+                    mult = 2;
+
+                // held item
+                const int powerYield = 8;
+                switch (heldItem)
+                {
+                    case "Power Weight":
+                        hpEV += powerYield;
+                        break;
+                    case "Power Bracer":
+                        atkEV += powerYield;
+                        break;
+                    case "Power Belt":
+                        defEV += powerYield;
+                        break;
+                    case "Power Lens":
+                        spAtkEV += powerYield;
+                        break;
+                    case "Power Band":
+                        spDefEV += powerYield;
+                        break;
+                    case "Power Anklet":
+                        speedEV += powerYield;
+                        break;
+                }
+
+                // Calculate totals and display
+                HPEVLabel.Text = (Int32.Parse(HPEVLabel.Text) + (hpEV * mult)).ToString();
+                AttackEVLabel.Text = (Int32.Parse(AttackEVLabel.Text) + (atkEV * mult)).ToString();
+                DefenseEVLabel.Text = (Int32.Parse(DefenseEVLabel.Text) + (defEV * mult)).ToString();
+                SpAtkEVLabel.Text = (Int32.Parse(SpAtkEVLabel.Text) + (spAtkEV * mult)).ToString();
+                SpDefEVLabel.Text = (Int32.Parse(SpDefEVLabel.Text) + (spDefEV * mult)).ToString();
+                SpeedEVLabel.Text = (Int32.Parse(SpeedEVLabel.Text) + (speedEV * mult)).ToString();
+            }
         }
 
         public override void DidReceiveMemoryWarning()
