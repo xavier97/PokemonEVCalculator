@@ -218,3 +218,4 @@ paket-files/
 # OpenCover UI analysis results
 OpenCover/
 *.userprefs
+*.icloud
