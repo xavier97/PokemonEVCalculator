@@ -52,7 +52,8 @@ namespace PKMNEVCalc
             HeldItemPicker.Model = pickerDataModel;
 
             // wire up the value change method
-            pickerDataModel.ValueChanged += (s, e) => {
+            pickerDataModel.ValueChanged += (s, e) =>
+            {
                 heldItem = pickerDataModel.SelectedItem;
             };
             #endregion
@@ -128,8 +129,11 @@ namespace PKMNEVCalc
             var pkmnToEdit = FileManager.getInstance.pokemonDetailsStorage[(int)rowToEdit];
 
             pkmnToEdit.GetAButton(buttonNumber).Clear();
-            InvokeOnMainThread(() => { pokemonBattleButtonDict["pokemonButton" + buttonNumber]
-                .SetTitle("No PKMN", UIControlState.Normal); });
+            InvokeOnMainThread(() =>
+            {
+                pokemonBattleButtonDict["pokemonButton" + buttonNumber]
+.SetTitle("No PKMN", UIControlState.Normal);
+            });
         }
 
         private void GetNewOpponentScreen(UIAlertAction obj, int buttonNumber)
@@ -205,7 +209,50 @@ namespace PKMNEVCalc
                             UIControlState.Normal);
                     }
                 }
+
+                // name labels
+                evPokemonLabel1.Text = pkmnToEdit.GetAButton(1).Name;
+                evPokemonLabel2.Text = pkmnToEdit.GetAButton(2).Name;
+                evPokemonLabel3.Text = pkmnToEdit.GetAButton(3).Name;
+
+                // ev yield
+                evYieldLabel1.Text = CreateEVLabel(pkmnToEdit.GetAButton(1));
+                evYieldLabel2.Text = CreateEVLabel(pkmnToEdit.GetAButton(2));
+                evYieldLabel3.Text = CreateEVLabel(pkmnToEdit.GetAButton(3));
             }
+        }
+
+        private string CreateEVLabel(PokemonBattled pokemon)
+        {
+            List<string> labelList = new List<string>();
+            if (pokemon.AttackEV > 0)
+            {
+                labelList.Add("+" + pokemon.AttackEV + " Attack");
+            }
+            if (pokemon.DefenseEV > 0)
+            {
+                labelList.Add("+" + pokemon.DefenseEV + " Defense");
+            }
+            if (pokemon.SpAttackEV > 0)
+            {
+                labelList.Add("+" + pokemon.SpAttackEV + " Sp. Attack");
+            }
+            if (pokemon.SpDefenseEV > 0)
+            {
+                labelList.Add("+" + pokemon.SpDefenseEV + " Sp. Defense");
+            }
+            if (pokemon.SpeedEV > 0)
+            {
+                labelList.Add("+" + pokemon.SpeedEV + " Speed");
+            }
+            if (pokemon.HpEV > 0)
+            {
+                labelList.Add("+" + pokemon.HpEV + " HP");
+            }
+
+            string label = string.Join("\n", labelList.ToArray());
+
+            return label;
         }
 
         private void CalculateStats(PokemonBattled pokemonBattled)

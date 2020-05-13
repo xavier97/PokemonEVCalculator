@@ -32,6 +32,30 @@ namespace PKMNEVCalc
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel evPokemonLabel1 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel evPokemonLabel2 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel evPokemonLabel3 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel evYieldLabel1 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel evYieldLabel2 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel evYieldLabel3 { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView HeldItemPicker { get; set; }
 
         [Outlet]
@@ -118,6 +142,36 @@ namespace PKMNEVCalc
             if (DefenseEVTItleLabel != null) {
                 DefenseEVTItleLabel.Dispose ();
                 DefenseEVTItleLabel = null;
+            }
+
+            if (evPokemonLabel1 != null) {
+                evPokemonLabel1.Dispose ();
+                evPokemonLabel1 = null;
+            }
+
+            if (evPokemonLabel2 != null) {
+                evPokemonLabel2.Dispose ();
+                evPokemonLabel2 = null;
+            }
+
+            if (evPokemonLabel3 != null) {
+                evPokemonLabel3.Dispose ();
+                evPokemonLabel3 = null;
+            }
+
+            if (evYieldLabel1 != null) {
+                evYieldLabel1.Dispose ();
+                evYieldLabel1 = null;
+            }
+
+            if (evYieldLabel2 != null) {
+                evYieldLabel2.Dispose ();
+                evYieldLabel2 = null;
+            }
+
+            if (evYieldLabel3 != null) {
+                evYieldLabel3.Dispose ();
+                evYieldLabel3 = null;
             }
 
             if (HeldItemPicker != null) {
